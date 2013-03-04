@@ -173,6 +173,7 @@ inoremap <4-MiddleMouse> <Nop>
 nmap <silent> <space><space> :noh<CR>
 
 " windows {{{1
+noremap <space>o <C-w>o
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
