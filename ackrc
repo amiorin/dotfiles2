@@ -1,0 +1,8 @@
+--follow
+--smart-case
+-a
+--ignore-dir=tmp
+--ignore-dir=extras
+--ignore-dir=log
+--ignore-dir=_site
+--ignore-dir=assets

@@ -1,0 +1,6 @@
+set show-all-if-ambiguous on
+set bell-style visible
+set completion-ignore-case on
+set match-hidden-files on
+set keymap vi
+set editing-mode vi
