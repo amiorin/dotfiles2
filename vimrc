@@ -34,6 +34,7 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'tpope/vim-haml'
 Bundle 'godlygeek/tabular'
 Bundle 'sjl/gundo.vim'
+Bundle 'tpope/vim-markdown'
 
 filetype plugin indent on     " required!
 
