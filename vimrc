@@ -1,4 +1,4 @@
-" Vundle {{{
+" Vundle {{{1
 set nocompatible               " be iMproved
 filetype off                   " required!
 
@@ -36,12 +36,12 @@ Bundle 'godlygeek/tabular'
 Bundle 'sjl/gundo.vim'
 
 filetype plugin indent on     " required!
-" }}}
-" paredit {{{
+
+" paredit {{{1
 let g:paredit_smartjump = 1
 let g:paredit_leader = '§'
-"}}}
-" lisp and others {{{
+
+" lisp and others {{{1
 au BufNewFile,BufRead *.{wisp,scm,ls,shen} call PareditInitBuffer()
 au BufNewFile,BufRead *.{wisp,scm,ls,shen} nmap <silent> <buffer> <space>c v(((((((:ScreenSend<cr>
 au BufNewFile,BufRead *.{wisp,scm,ls,shen} vmap <silent> <buffer> <space>c :ScreenSend<cr>
@@ -51,19 +51,19 @@ au BufNewFile,BufRead *.{wisp,scm,ls,shen} nmap <buffer> H f(
 au BufNewFile,BufRead *.{wisp,scm,ls,shen} nmap <buffer> h F(
 au BufRead,BufNewFile *.wisp set ft=wisp
 au BufRead,BufNewFile *.shen set ft=clj
-" }}}
-" xml {{{
+
+" xml {{{1
 let g:xml_syntax_folding = 1
-set foldmethod=syntax " }}}
-" diff {{{
+set foldmethod=syntax 
+" diff {{{1
 nnoremap <silent> <space>dt :diffthis<CR>
 nnoremap <silent> <space>do :diffoff<CR>
-" }}}
-" rainbow parentheses {{{
+
+" rainbow parentheses {{{1
 let g:rainbow_active = 1
 let g:rainbow_operators = 1
-" }}}
-" List chars {{{
+
+" List chars {{{1
 set list
 set listchars=""                  " Reset the listchars
 set listchars=tab:\ \             " a tab should display as "  ", trailing whitespace as "."
@@ -72,15 +72,15 @@ set listchars+=extends:>          " The character to show in the last column whe
                                   " off and the line continues beyond the right of the screen
 set listchars+=precedes:<         " The character to show in the last column when wrap is
                                   " off and the line continues beyond the right of the screen
-" }}}
-" fanfingtastic {{{
+
+" fanfingtastic {{{1
 let g:fanfingtastic_use_jumplist = 1
-" }}}
-" help {{{
+
+" help {{{1
 autocmd FileType vim set keywordprg=":help" " use the :help command for 'K' in .vim files
 autocmd FileType help nnoremap <buffer> q :q<CR>
-"}}}
-" hardcore {{{
+
+" hardcore {{{1
 nmap <BS> ge
 nmap <S-BS> gE
 nnoremap gh <Left>
@@ -89,18 +89,18 @@ nnoremap h <Nop>
 nnoremap j <C-d>
 nnoremap k <C-u>
 nnoremap l <Nop>
-" }}}
-" ack {{{
+
+" ack {{{1
 nnoremap <space>a :Ack
-" }}}
-" easymotion {{{
+
+" easymotion {{{1
 let g:EasyMotion_leader_key = '<Space>'
-" }}}
-" powerline {{{
+
+" powerline {{{1
 set guifont=Menlo\ for\ Powerline:h11
 let g:Powerline_symbols = 'fancy'
-" }}}
-" NERDTree and other sidebars {{{
+
+" NERDTree and other sidebars {{{1
 nnoremap <silent> sa :vertical resize 40<CR>
 let g:NERDTreeMapCWD = "<F2>"
 let g:NERDTreeMapHelp = "<F1>"
@@ -109,25 +109,25 @@ let g:NERDTreeWinSize = 40
 nnoremap <silent> ss :NERDTreeToggle<CR>
 nnoremap <silent> sd :TagbarToggle<CR>
 nnoremap <silent> sf :BuffergatorToggle<CR>
-" }}}
-" CtrlP {{{
+
+" CtrlP {{{1
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_cmd = 'CtrlPMRUFiles'
 let g:ctrlp_switch_buffer = 0
 nmap <D-p> <C-p>
-" }}}
-" buffergator {{{
+
+" buffergator {{{1
 let g:buffergator_display_regime = "bufname"
 let g:buffergator_sort_regime = "filepath"
-" }}}
-" no matchparen {{{
+
+" no matchparen {{{1
 let loaded_matchparen = 1
-" }}}
-" solarized {{{
+
+" solarized {{{1
 set background=dark
 colorscheme solarized
-" }}}
-" Misc {{{
+
+" Misc {{{1
 set wildmode=list:longest
 set wildmenu
 set wildignore=*.o,*.obj,*~
@@ -158,8 +158,8 @@ if has("gui_running")
   set guioptions=-t
   set guioptions=e
 endif
-" }}}
-" no paste with mouse {{{
+
+" no paste with mouse {{{1
 nnoremap <MiddleMouse> <Nop>
 nnoremap <2-MiddleMouse> <Nop>
 nnoremap <3-MiddleMouse> <Nop>
@@ -171,8 +171,8 @@ inoremap <3-MiddleMouse> <Nop>
 inoremap <4-MiddleMouse> <Nop>
 
 nmap <silent> <space><space> :noh<CR>
-" }}}
-" windows {{{
+
+" windows {{{1
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
