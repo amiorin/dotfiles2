@@ -19,6 +19,10 @@ git clone https://github.com/amiorin/dotfiles.git ~/Code/dotfiles
 # for example vimrc
 ln -s ~/Code/dotfiles/vimrc ~/.vimrc
 ```
+
+## Links
+[Using git and github to manage your dotfiles](http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/)
+
 ## License
 
 The MIT License (MIT)
