@@ -39,7 +39,7 @@ plugins=(lein git brew gem npm vi-mode history-substring-search)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-PATH=/usr/local/share/python:/usr/local/bin:$PATH
+PATH=/usr/local/share/python:/usr/local/sbin:/usr/local/bin:$PATH
 
 # vi mode
 bindkey -v

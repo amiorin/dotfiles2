@@ -1,3 +1,6 @@
+" vim: sw=2 ts=2 et fdm=marker nofoldenable :
+" Alberto Miorin's .vimrc File
+" "zo" to open folds, "zc" to close, "zi" to toggle
 " Vundle {{{1
 set nocompatible               " be iMproved
 filetype off                   " required!
@@ -35,8 +38,10 @@ Bundle 'tpope/vim-haml'
 Bundle 'godlygeek/tabular'
 Bundle 'sjl/gundo.vim'
 Bundle 'tpope/vim-markdown'
+Bundle 'jgdavey/tslime.vim'
 
 filetype plugin indent on     " required!
+syntax on
 
 " paredit {{{1
 let g:paredit_smartjump = 1
@@ -55,7 +60,7 @@ au BufRead,BufNewFile *.shen set ft=clj
 
 " xml {{{1
 let g:xml_syntax_folding = 1
-set foldmethod=syntax 
+set foldmethod=syntax
 " diff {{{1
 nnoremap <silent> <space>dt :diffthis<CR>
 nnoremap <silent> <space>do :diffoff<CR>
@@ -79,6 +84,7 @@ let g:fanfingtastic_use_jumplist = 1
 
 " help {{{1
 autocmd FileType vim set keywordprg=":help" " use the :help command for 'K' in .vim files
+autocmd FileType help set keywordprg=":help" " use the :help command for 'K' in .vim files
 autocmd FileType help nnoremap <buffer> q :q<CR>
 
 " hardcore {{{1
@@ -92,16 +98,19 @@ nnoremap k <C-u>
 nnoremap l <Nop>
 
 " ack {{{1
-nnoremap <space>a :Ack
+nnoremap <space>a :Ack 
 
 " easymotion {{{1
+let g:EasyMotion_do_shade = 0
 let g:EasyMotion_leader_key = '<Space>'
 
 " powerline {{{1
-set guifont=Menlo\ for\ Powerline:h11
+set guifont=Menlo\ for\ Powerline:h24
 let g:Powerline_symbols = 'fancy'
 
 " NERDTree and other sidebars {{{1
+cnoremap %% <C-R>=expand('%:h').'/'<CR>
+map <space>sh :NERDTree %%<CR>
 nnoremap <silent> sa :vertical resize 40<CR>
 let g:NERDTreeMapCWD = "<F2>"
 let g:NERDTreeMapHelp = "<F1>"
@@ -183,5 +192,11 @@ inoremap <C-h> <Esc><C-w>h
 inoremap <C-j> <Esc><C-w>j
 inoremap <C-k> <Esc><C-w>k
 inoremap <C-l> <Esc><C-w>l
-" }}}
-" vim: sw=2 ts=2 et fdm=marker fdl=0:
+" accents {{{1
+iabbr e' é
+iabbr e` è
+iabbr a` à
+iabbr o` ò
+iabbr o' ó
+iabbr u` ù
+iabbr i` ì
