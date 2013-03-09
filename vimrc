@@ -54,21 +54,24 @@ Bundle 'amiorin/tinykeymap_vim'
 filetype plugin indent on     " required!
 syntax on
 
+" last-position-jump {{{1
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+
 " tinykeymap {{{1
 let g:tinykeymap#mapleader = '<Space>m'
 let g:tinykeymaps_default = []
 
 " togglelist {{{1
-g:toggle_list_no_mappings = 0
-nmap <silent> <space>l :call ToggleLocationList()<CR>
-nmap <silent> <space>q :call ToggleQuickfixList()<CR>
+let g:toggle_list_no_mappings = 0
+nnoremap <silent> <space>l :call ToggleLocationList()<CR>
+nnoremap <silent> <space>q :call ToggleQuickfixList()<CR>
 
 " quifixsigns {{{1
 let g:quickfixsigns_classes=['qfl', 'vcsdiff', 'breakpoints']
 
 " paredit {{{1
 let g:paredit_smartjump = 1
-"let g:paredit_leader = '§'
+let g:paredit_leader = '§'
 
 " yankstack {{{1
 let g:yankstack_map_keys = 0
@@ -102,16 +105,6 @@ nnoremap <silent> <space>do :diffoff<CR>
 let g:rainbow_active = 1
 let g:rainbow_operators = 1
 
-" List chars {{{1
-set list
-set listchars=""                  " Reset the listchars
-set listchars=tab:\ \             " a tab should display as "  ", trailing whitespace as "."
-set listchars+=trail:.            " show trailing spaces as dots
-set listchars+=extends:>          " The character to show in the last column when wrap is
-                                  " off and the line continues beyond the right of the screen
-set listchars+=precedes:<         " The character to show in the last column when wrap is
-                                  " off and the line continues beyond the right of the screen
-
 " fanfingtastic {{{1
 let g:fanfingtastic_ignorecase = 1
 let g:fanfingtastic_use_jumplist = 1
@@ -129,8 +122,6 @@ let g:EasyMotion_do_shade = 0
 let g:EasyMotion_leader_key = '<Space>'
 
 " hardcore {{{1
-nnoremap <BS> ge
-nnoremap <S-BS> gE
 nnoremap gh <Left>
 nnoremap gl <Right>
 nnoremap h <Nop>
@@ -187,36 +178,57 @@ else
   set background=light
 endif
 
-" Misc {{{1
-"set wildmode=full
-"set wildmenu
-set wildignore=*.o,*.obj,*~
+" no sound {{{1
 set visualbell
-nmap <space> <nop>
-nmap s <nop>
-set noto
+
+" map {{{1
+nnoremap <BS> ge
+nnoremap <S-BS> gE
+nnoremap <space> <nop>
+nnoremap s <nop>
+nnoremap <silent> <space><space> :noh<CR>
+
+" List chars {{{1
+set list
+set listchars=tab:\ \ 
+set listchars+=trail:·
+set listchars+=extends:>
+set listchars+=precedes:<
+
+" misc {{{1
+set notimeout
 set history=2000
 set laststatus=2
 set showcmd
-set showmatch
+set nowrap
+set number
+set backspace=indent,eol,start
+set cursorline
+set foldlevel=1000
+
+" search {{{1
 set ignorecase
 set nosmartcase
+set showmatch
 set incsearch
-set nowrap
 set hlsearch
+
+" indent {{{1
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set autoindent
-set number
+set expandtab
+
+" write policy {{{1
 set nobackup
 set noswapfile
+set nowritebackup
 set autoread
 set autowrite
 set autowriteall
-set backspace=indent,eol,start
-set cursorline
-set foldlevel=1000
+
+" remove ui {{{1
 if has("gui_running")
   set guioptions=-t
   set guioptions=e
@@ -232,8 +244,6 @@ inoremap <MiddleMouse> <Nop>
 inoremap <2-MiddleMouse> <Nop>
 inoremap <3-MiddleMouse> <Nop>
 inoremap <4-MiddleMouse> <Nop>
-
-nmap <silent> <space><space> :noh<CR>
 
 " windows {{{1
 noremap <C-h> <C-w>h
