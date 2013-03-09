@@ -81,16 +81,10 @@ map Y y$
 noremap <space>y "*y
 noremap <space>yy "*yy
 noremap <space>Y "*y$
-"noremap <space>p :set paste<CR>"*p:set nopaste<CR>
-"noremap <space>P :set paste<CR>"*P:set nopaste<CR>
 " lisp and others {{{1
 au BufNewFile,BufRead *.{wisp,scm,ls,shen} call PareditInitBuffer()
 au BufNewFile,BufRead *.{wisp,scm,ls,shen} nmap <silent> <buffer> <space>c v(((((((:ScreenSend<cr>
 au BufNewFile,BufRead *.{wisp,scm,ls,shen} vmap <silent> <buffer> <space>c :ScreenSend<cr>
-"au BufNewFile,BufRead *.{wisp,scm,ls,shen} nmap <buffer> l f)
-"au BufNewFile,BufRead *.{wisp,scm,ls,shen} nmap <buffer> L F)
-"au BufNewFile,BufRead *.{wisp,scm,ls,shen} nmap <buffer> H f(
-"au BufNewFile,BufRead *.{wisp,scm,ls,shen} nmap <buffer> h F(
 au BufRead,BufNewFile *.wisp set ft=wisp
 au BufRead,BufNewFile *.shen set ft=clj
 
@@ -131,10 +125,6 @@ autocmd FileType help nnoremap <buffer> q :q<CR>
 let g:EasyMotion_mapping_ge = '<space><BS>'
 let g:EasyMotion_mapping_gE = '<space><S-BS>'
 let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz'
-"vnoremap  <Space><BS>   :<C-U>call EasyMotion#E(1, 1)<CR>
-"nnoremap  <Space><BS>   :call EasyMotion#E(0, 1)<CR>
-"vnoremap  <Space><S-BS>   :<C-U>call EasyMotion#EW(1, 1)<CR>
-"nnoremap  <Space><S-BS>   :call EasyMotion#EW(0, 1)<CR>
 let g:EasyMotion_do_shade = 0
 let g:EasyMotion_leader_key = '<Space>'
 
@@ -254,11 +244,3 @@ inoremap <C-h> <Esc><C-w>h
 inoremap <C-j> <Esc><C-w>j
 inoremap <C-k> <Esc><C-w>k
 inoremap <C-l> <Esc><C-w>l
-" accents {{{1
-"iabbr e' é
-"iabbr e` è
-"iabbr a` à
-"iabbr o` ò
-"iabbr o' ó
-"iabbr u` ù
-"iabbr i` ì
