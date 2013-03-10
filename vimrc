@@ -12,9 +12,7 @@ Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'dahu/vim-fanfingtastic'
 Bundle 'scrooloose/syntastic'
-Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
-Bundle 'jeetsukumaran/vim-buffergator'
 Bundle 'majutsushi/tagbar'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'altercation/vim-colors-solarized'
@@ -34,6 +32,7 @@ Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-speeddating'
+Bundle 'tpope/vim-commentary'
 Bundle 'pangloss/vim-javascript'
 Bundle 'godlygeek/tabular'
 Bundle 'sjl/gundo.vim'
@@ -50,9 +49,32 @@ Bundle 'ctrlp-register'
 Bundle 'ctrlp-verboselet'
 Bundle 'milkypostman/vim-togglelist'
 Bundle 'amiorin/tinykeymap_vim'
+Bundle 'bkad/CamelCaseMotion'
+Bundle 'kana/vim-textobj-user'
+Bundle 'gilligan/textobj-gitgutter'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'nelstrom/vim-textobj-rubyblock'
+Bundle 'kshenoy/vim-signature'
 
 filetype plugin indent on     " required!
 syntax on
+
+" textobj
+runtime macros/matchit.vim
+
+" CamelCase {{{1
+for s:mode in ['n', 'o', 'v']
+  for s:motion in ['w', 'b', 'e']
+    let s:targetMapping = '<Plug>CamelCaseMotion_' . s:motion
+    execute (s:mode ==# 'v' ? 'x' : s:mode) . 'map <silent> ' . toupper(s:motion) . ' ' . s:targetMapping
+  endfor
+endfor
+for s:mode in ['o', 'v']
+  for s:motion in ['w', 'b', 'e']
+    let s:targetMapping = '<Plug>CamelCaseMotion_i' . s:motion
+    execute (s:mode ==# 'v' ? 'x' : s:mode) . 'map <silent> i' . toupper(s:motion) . ' ' . s:targetMapping 
+  endfor
+endfor
 
 " last-position-jump {{{1
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
@@ -67,11 +89,14 @@ nnoremap <silent> <space>l :call ToggleLocationList()<CR>
 nnoremap <silent> <space>q :call ToggleQuickfixList()<CR>
 
 " quifixsigns {{{1
-let g:quickfixsigns_classes=['qfl', 'vcsdiff', 'breakpoints']
+let g:quickfixsigns_classes=['qfl', 'breakpoints']
 
 " paredit {{{1
 let g:paredit_smartjump = 1
 let g:paredit_leader = '§'
+
+" signature {{{1
+let g:SignatureDisableMenu = 1
 
 " yankstack {{{1
 let g:yankstack_map_keys = 0
@@ -84,6 +109,7 @@ map Y y$
 noremap <space>y "*y
 noremap <space>yy "*yy
 noremap <space>Y "*y$
+
 " lisp and others {{{1
 au BufNewFile,BufRead *.{wisp,scm,ls,shen} call PareditInitBuffer()
 au BufNewFile,BufRead *.{wisp,scm,ls,shen} nmap <silent> <buffer> <space>c v(((((((:ScreenSend<cr>
@@ -254,3 +280,5 @@ inoremap <C-h> <Esc><C-w>h
 inoremap <C-j> <Esc><C-w>j
 inoremap <C-k> <Esc><C-w>k
 inoremap <C-l> <Esc><C-w>l
+nnoremap <space>s :sp #<cr>
+nnoremap <space>v :vsp #<cr>
