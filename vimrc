@@ -1,4 +1,4 @@
-" vim: sw=2 ts=2 et fdm=marker nofoldenable :
+" vim: sw=2 ts=2 et fdm=marker fdl=0 nofoldenable :
 " Alberto Miorin's .vimrc File
 " "zo" to open folds, "zc" to close, "zi" to toggle
 " Vundle {{{1
@@ -9,16 +9,19 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
+Bundle 'kien/ctrlp.vim'
+Bundle 'amiorin/ctrlp-z'
+Bundle 'amiorin/vim-colors-solarized'
+Bundle 'amiorin/vim-eval'
+Bundle 'amiorin/tinykeymap_vim'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'dahu/vim-fanfingtastic'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
 Bundle 'majutsushi/tagbar'
 Bundle 'Lokaltog/vim-powerline'
-Bundle 'altercation/vim-colors-solarized'
 Bundle 'ervandew/supertab'
 Bundle 'mileszs/ack.vim'
-Bundle 'amiorin/vim-eval'
 Bundle 'dahu/LearnVim'
 Bundle 'guns/paredit'
 Bundle 'guyzmo/Rainbow-Parentheses-Improved-and2'
@@ -41,25 +44,27 @@ Bundle 'ervandew/screen'
 Bundle 'maxbrunsfeld/vim-yankstack'
 Bundle 'tomtom/quickfixsigns_vim'
 Bundle 'tyru/open-browser.vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'amiorin/ctrlp-z'
 Bundle 'tacahiroy/ctrlp-funky'
 Bundle 'ctrlp-filetype'
 Bundle 'ctrlp-register'
 Bundle 'ctrlp-verboselet'
 Bundle 'milkypostman/vim-togglelist'
-Bundle 'amiorin/tinykeymap_vim'
 Bundle 'bkad/CamelCaseMotion'
-Bundle 'kana/vim-textobj-user'
-Bundle 'gilligan/textobj-gitgutter'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'kshenoy/vim-signature'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'kana/vim-textobj-user'
+Bundle 'nelstrom/vim-textobj-rubyblock'
+Bundle 'kana/vim-textobj-syntax'
+Bundle 'gilligan/textobj-gitgutter'
 
 filetype plugin indent on     " required!
 syntax on
 
-" textobj
+" persistent-undo {{{1
+set undodir=~/.vim/undo
+set undofile
+
+" textobj {{{1
 runtime macros/matchit.vim
 
 " CamelCase {{{1
@@ -109,6 +114,12 @@ map Y y$
 noremap <space>y "*y
 noremap <space>yy "*yy
 noremap <space>Y "*y$
+
+" ruby {{{1
+autocmd FileType ruby,eruby
+      \ set foldmethod=expr |
+      \ set foldexpr=getline(v:lnum)=~'^\\s*#' |
+      \ exe "normal zM``"
 
 " lisp and others {{{1
 au BufNewFile,BufRead *.{wisp,scm,ls,shen} call PareditInitBuffer()
