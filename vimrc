@@ -36,6 +36,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-rvm'
 Bundle 'pangloss/vim-javascript'
 Bundle 'godlygeek/tabular'
 Bundle 'sjl/gundo.vim'
@@ -56,9 +57,13 @@ Bundle 'kana/vim-textobj-user'
 Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'kana/vim-textobj-syntax'
 Bundle 'gilligan/textobj-gitgutter'
+Bundle 'suan/vim-instant-markdown'
 
 filetype plugin indent on     " required!
 syntax on
+
+" gundo {{{1
+nnoremap su :GundoToggle<CR>
 
 " persistent-undo {{{1
 set undodir=~/.vim/undo
@@ -116,10 +121,31 @@ noremap <space>yy "*yy
 noremap <space>Y "*y$
 
 " ruby {{{1
-autocmd FileType ruby,eruby
-      \ set foldmethod=expr |
-      \ set foldexpr=getline(v:lnum)=~'^\\s*#' |
-      \ exe "normal zM``"
+fu! CustomFoldText()
+    "get first non-blank line
+    let fs = v:foldstart
+    while getline(fs) =~ '^\s*$' | let fs = nextnonblank(fs + 1)
+    endwhile
+    if fs > v:foldend
+        let line = getline(v:foldstart)
+    else
+        let line = substitute(getline(fs), '\t', repeat(' ', &tabstop), 'g')
+    endif
+
+    let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
+    let foldSize = 1 + v:foldend - v:foldstart
+    let foldSizeStr = " " . foldSize . " lines "
+    let foldLevelStr = repeat("+--", v:foldlevel)
+    let lineCount = line("$")
+    let foldPercentage = printf("[%.1f", (foldSize*1.0)/lineCount*100) . "%] "
+    let expansionString = repeat(" ", w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage))
+    return line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
+endf
+autocmd FileType ruby,eruby,zsh
+      \ setlocal foldmethod=expr |
+      \ setlocal foldexpr=getline(v:lnum)=~'^\\s*#' |
+      \ setlocal foldtext=CustomFoldText() |
+      \ exe "normal zM"
 
 " lisp and others {{{1
 au BufNewFile,BufRead *.{wisp,scm,ls,shen} call PareditInitBuffer()
@@ -233,6 +259,7 @@ set listchars+=extends:>
 set listchars+=precedes:<
 
 " misc {{{1
+set noshowmode
 set notimeout
 set history=2000
 set laststatus=2

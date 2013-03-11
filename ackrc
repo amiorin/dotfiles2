@@ -2,6 +2,7 @@
 --smart-case
 -a
 --ignore-dir=tmp
+--ignore-dir=.vundle
 --ignore-dir=extras
 --ignore-dir=log
 --ignore-dir=_site
