@@ -5,3 +5,9 @@
 	helper = osxkeychain
 [push]
 	default = simple
+[help]
+	format = web
+[web]
+	browser = ch
+[browser "ch"]
+	cmd = open -a Google\\ Chrome.app

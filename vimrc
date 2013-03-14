@@ -37,6 +37,7 @@ Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-rvm'
+Bundle 'tpope/vim-rails'
 Bundle 'pangloss/vim-javascript'
 Bundle 'godlygeek/tabular'
 Bundle 'sjl/gundo.vim'
@@ -57,6 +58,9 @@ Bundle 'kana/vim-textobj-user'
 Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'kana/vim-textobj-syntax'
 Bundle 'gilligan/textobj-gitgutter'
+Bundle 'kana/vim-textobj-indent'
+Bundle 'glts/vim-textobj-indblock'
+Bundle 'coderifous/textobj-word-column.vim'
 Bundle 'suan/vim-instant-markdown'
 
 filetype plugin indent on     " required!
@@ -184,14 +188,6 @@ let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz'
 let g:EasyMotion_do_shade = 0
 let g:EasyMotion_leader_key = '<Space>'
 
-" hardcore {{{1
-nnoremap gh <Left>
-nnoremap gl <Right>
-nnoremap h <Nop>
-nnoremap j <Nop>
-nnoremap k <Nop>
-nnoremap l <Nop>
-
 " ack {{{1
 nnoremap <space>a :Ack 
 
@@ -201,28 +197,28 @@ let g:Powerline_symbols = 'fancy'
 
 " NERDTree and other sidebars {{{1
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
-map <space>sh :NERDTree %%<CR>
-nnoremap <silent> sa :vertical resize 40<CR>
 let g:NERDTreeMapCWD = "<F2>"
 let g:NERDTreeMapHelp = "<F1>"
 let g:NERDTreeQuitOnOpen = 1
 let g:NERDTreeWinSize = 40
+
+" map of s {{{1
+map sc :NERDTree %%<CR>
+nnoremap <silent> sa :vertical resize 40<CR>
 nnoremap <silent> ss :NERDTreeToggle<CR>
 nnoremap <silent> sd :TagbarToggle<CR>
-nnoremap <silent> sf :BuffergatorToggle<CR>
+nnoremap <silent> sz :CtrlPZ<CR>
+nnoremap <silent> st :CtrlPFunky<CR>
+nnoremap <silent> sf :CtrlPF<CR>
+nnoremap <silent> sb :CtrlPBuffer<CR>
+nnoremap <silent> sh :h<CR>:CtrlPTag<CR>
 
 " CtrlP {{{1
-let g:ctrlp_z_nerdtree = 1
+let g:ctrlp_z_nerdtree = 0
 let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_map = 'sp'
 let g:ctrlp_cmd = 'CtrlPMRUFiles'
 let g:ctrlp_switch_buffer = 0
-nnoremap <silent> <space>pm :CtrlPMRUFiles<CR>
-nnoremap <silent> <space>pt :CtrlPFunky<CR>
-nnoremap <silent> <space>pz :CtrlPZ<CR>
-nnoremap <silent> <space>pf :CtrlP<CR>
-nnoremap <silent> <space>pb :CtrlPBuffer<CR>
-nnoremap <silent> <space>ph :CtrlPTag<CR>
-nnoremap <silent> <space>ph :h<CR>:CtrlPTag<CR>
 
 " buffergator {{{1
 let g:buffergator_display_regime = "bufname"
@@ -263,6 +259,7 @@ set noshowmode
 set notimeout
 set history=2000
 set laststatus=2
+set showtabline=0
 set showcmd
 set nowrap
 set number
@@ -298,16 +295,41 @@ if has("gui_running")
   set guioptions=e
 endif
 
-" no paste with mouse {{{1
-nnoremap <MiddleMouse> <Nop>
+" ratpoison {{{1
+nnoremap <MiddleMouse>   <Nop>
 nnoremap <2-MiddleMouse> <Nop>
 nnoremap <3-MiddleMouse> <Nop>
 nnoremap <4-MiddleMouse> <Nop>
 
-inoremap <MiddleMouse> <Nop>
+inoremap <MiddleMouse>   <Nop>
 inoremap <2-MiddleMouse> <Nop>
 inoremap <3-MiddleMouse> <Nop>
 inoremap <4-MiddleMouse> <Nop>
+
+nnoremap <LeftMouse>     <Nop>
+nnoremap <2-LeftMouse>   <Nop>
+nnoremap <3-LeftMouse>   <Nop>
+nnoremap <4-LeftMouse>   <Nop>
+
+inoremap <LeftMouse>     <Nop>
+inoremap <2-LeftMouse>   <Nop>
+inoremap <3-LeftMouse>   <Nop>
+inoremap <4-LeftMouse>   <Nop>
+
+nnoremap <RightMouse>    <Nop>
+nnoremap <2-RightMouse>  <Nop>
+nnoremap <3-RightMouse>  <Nop>
+nnoremap <4-RightMouse>  <Nop>
+
+inoremap <RightMouse>    <Nop>
+inoremap <2-RightMouse>  <Nop>
+inoremap <3-RightMouse>  <Nop>
+inoremap <4-RightMouse>  <Nop>
+
+map <MiddleMouse> <Nop>
+map <S-MiddleMouse> <Nop>
+map <S-LeftMouse> <Nop>
+map <S-LeftMouse> <Nop>
 
 " windows {{{1
 noremap <C-h> <C-w>h
@@ -320,3 +342,7 @@ inoremap <C-k> <Esc><C-w>k
 inoremap <C-l> <Esc><C-w>l
 nnoremap <space>s :sp #<cr>
 nnoremap <space>v :vsp #<cr>
+
+" rspec {{{1
+autocmd BufRead *_spec.rb syn keyword rubyRspec describe context it specify it_should_behave_like before after setup subject its shared_examples_for shared_context let
+highlight def link rubyRspec Function

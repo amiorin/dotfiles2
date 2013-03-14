@@ -74,8 +74,8 @@ alias b="bundle"
 alias g="git"
 
 # man
-export PAGER="col -b | open -a /Applications/Google\ Chrome.app -f"
+export PAGER="col -b | sed 's/1m\(.*\)0m/\1/' | open -a /Applications/Google\ Chrome.app -f"
+
 
 # rvmrc and zsh
 [[ `type __rvm_project_rvmrc`"" == 'function' ]] && __rvm_project_rvmrc
-
