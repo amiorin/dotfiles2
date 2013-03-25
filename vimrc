@@ -21,10 +21,12 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'majutsushi/tagbar'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'ervandew/supertab'
+Bundle 'ervandew/screen'
 Bundle 'mileszs/ack.vim'
 Bundle 'dahu/LearnVim'
 Bundle 'guns/paredit'
 Bundle 'guyzmo/Rainbow-Parentheses-Improved-and2'
+Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-rake'
@@ -42,7 +44,6 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'godlygeek/tabular'
 Bundle 'sjl/gundo.vim'
 Bundle 'jgdavey/tslime.vim'
-Bundle 'ervandew/screen'
 Bundle 'maxbrunsfeld/vim-yankstack'
 Bundle 'tomtom/quickfixsigns_vim'
 Bundle 'tyru/open-browser.vim'
@@ -65,6 +66,14 @@ Bundle 'suan/vim-instant-markdown'
 
 filetype plugin indent on     " required!
 syntax on
+
+" supertab {{{1
+
+
+" vim-ruby {{{1
+let g:rubycomplete_buffer_loading = 1
+let g:rubycomplete_classes_in_global = 1
+let g:rubycomplete_rails = 1
 
 " gundo {{{1
 nnoremap su :GundoToggle<CR>
@@ -114,9 +123,11 @@ let g:SignatureDisableMenu = 1
 
 " yankstack {{{1
 let g:yankstack_map_keys = 0
-nmap [p <Plug>yankstack_substitute_older_paste
-nmap ]p <Plug>yankstack_substitute_newer_paste
+nmap <C-p> <Plug>yankstack_substitute_older_paste
+nmap <C-n> <Plug>yankstack_substitute_newer_paste
 call yankstack#setup()
+
+" Y like D and C {{{1
 map Y y$
 
 " OSX clipboard {{{1
@@ -206,6 +217,7 @@ let g:NERDTreeWinSize = 40
 map sc :NERDTree %%<CR>
 nnoremap <silent> sa :vertical resize 40<CR>
 nnoremap <silent> ss :NERDTreeToggle<CR>
+nnoremap <silent> s. :NERDTree .<CR>
 nnoremap <silent> sd :TagbarToggle<CR>
 nnoremap <silent> sz :CtrlPZ<CR>
 nnoremap <silent> st :CtrlPFunky<CR>
@@ -259,7 +271,7 @@ set noshowmode
 set notimeout
 set history=2000
 set laststatus=2
-set showtabline=0
+set showtabline=1
 set showcmd
 set nowrap
 set number
@@ -305,31 +317,6 @@ inoremap <MiddleMouse>   <Nop>
 inoremap <2-MiddleMouse> <Nop>
 inoremap <3-MiddleMouse> <Nop>
 inoremap <4-MiddleMouse> <Nop>
-
-nnoremap <LeftMouse>     <Nop>
-nnoremap <2-LeftMouse>   <Nop>
-nnoremap <3-LeftMouse>   <Nop>
-nnoremap <4-LeftMouse>   <Nop>
-
-inoremap <LeftMouse>     <Nop>
-inoremap <2-LeftMouse>   <Nop>
-inoremap <3-LeftMouse>   <Nop>
-inoremap <4-LeftMouse>   <Nop>
-
-nnoremap <RightMouse>    <Nop>
-nnoremap <2-RightMouse>  <Nop>
-nnoremap <3-RightMouse>  <Nop>
-nnoremap <4-RightMouse>  <Nop>
-
-inoremap <RightMouse>    <Nop>
-inoremap <2-RightMouse>  <Nop>
-inoremap <3-RightMouse>  <Nop>
-inoremap <4-RightMouse>  <Nop>
-
-map <MiddleMouse> <Nop>
-map <S-MiddleMouse> <Nop>
-map <S-LeftMouse> <Nop>
-map <S-LeftMouse> <Nop>
 
 " windows {{{1
 noremap <C-h> <C-w>h
