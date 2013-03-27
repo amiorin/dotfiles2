@@ -70,6 +70,7 @@ alias rt="ls -lrt"
 # fasd uses a s d f z v o
 alias u="cd .."
 alias m="mvim"
+alias m2="mvim2"
 alias b="bundle"
 alias g="git"
 

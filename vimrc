@@ -45,7 +45,6 @@ Bundle 'godlygeek/tabular'
 Bundle 'sjl/gundo.vim'
 Bundle 'jgdavey/tslime.vim'
 Bundle 'maxbrunsfeld/vim-yankstack'
-Bundle 'tomtom/quickfixsigns_vim'
 Bundle 'tyru/open-browser.vim'
 Bundle 'tacahiroy/ctrlp-funky'
 Bundle 'ctrlp-filetype'
@@ -53,27 +52,32 @@ Bundle 'ctrlp-register'
 Bundle 'ctrlp-verboselet'
 Bundle 'milkypostman/vim-togglelist'
 Bundle 'bkad/CamelCaseMotion'
-Bundle 'kshenoy/vim-signature'
-Bundle 'airblade/vim-gitgutter'
 Bundle 'kana/vim-textobj-user'
 Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'kana/vim-textobj-syntax'
-Bundle 'gilligan/textobj-gitgutter'
 Bundle 'kana/vim-textobj-indent'
 Bundle 'glts/vim-textobj-indblock'
 Bundle 'coderifous/textobj-word-column.vim'
 Bundle 'nelstrom/vim-visual-star-search'
 Bundle 'mmai/wikilink'
+Bundle 'tomtom/quickfixsigns_vim'
+Bundle 'kshenoy/vim-signature'
+Bundle 'mhinz/vim-signify'
 Bundle 'suan/vim-instant-markdown'
 
 filetype plugin indent on     " required!
 syntax on
 
+" signify {{{1
+let g:signify_sign_overwrite = 0
+let g:signify_sign_color_guifg_add      = '#009900'
+let g:signify_sign_color_guifg_change   = '#bbbb00'
+let g:signify_sign_color_guifg_delete   = '#ff2222'
+
 " supertab {{{1
 
 " markdown {{{1
 autocmd FileType markdown setlocal textwidth=78
-
 
 " vim-ruby {{{1
 let g:rubycomplete_buffer_loading = 1
@@ -82,10 +86,6 @@ let g:rubycomplete_rails = 1
 
 " gundo {{{1
 nnoremap su :GundoToggle<CR>
-
-" persistent-undo {{{1
-set undodir=~/.vim/undo
-set undofile
 
 " textobj {{{1
 runtime macros/matchit.vim
@@ -298,7 +298,11 @@ set shiftwidth=2
 set autoindent
 set expandtab
 
-" write policy {{{1
+" autoread and autowrite {{{1
+augroup save
+  au!
+  au FocusLost * update
+augroup END
 set nobackup
 set noswapfile
 set nowritebackup
@@ -306,9 +310,15 @@ set autoread
 set autowrite
 set autowriteall
 
+" persistent-undo {{{1
+set undodir=~/.vim/undo
+set undofile
+
 " remove ui {{{1
 if has("gui_running")
   set guioptions=e
+else
+  set noesckeys
 endif
 
 " ratpoison {{{1
