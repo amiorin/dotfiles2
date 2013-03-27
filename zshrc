@@ -79,3 +79,6 @@ export PAGER="col -b | sed 's/1m\(.*\)0m/\1/' | open -a /Applications/Google\ Ch
 
 # rvmrc and zsh
 [[ `type __rvm_project_rvmrc`"" == 'function' ]] && __rvm_project_rvmrc
+
+# gollum
+alias gsync="sh ./.rvmrc"

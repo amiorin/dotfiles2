@@ -62,12 +62,17 @@ Bundle 'gilligan/textobj-gitgutter'
 Bundle 'kana/vim-textobj-indent'
 Bundle 'glts/vim-textobj-indblock'
 Bundle 'coderifous/textobj-word-column.vim'
+Bundle 'nelstrom/vim-visual-star-search'
+Bundle 'mmai/wikilink'
 Bundle 'suan/vim-instant-markdown'
 
 filetype plugin indent on     " required!
 syntax on
 
 " supertab {{{1
+
+" markdown {{{1
+autocmd FileType markdown setlocal textwidth=78
 
 
 " vim-ruby {{{1
@@ -303,7 +308,6 @@ set autowriteall
 
 " remove ui {{{1
 if has("gui_running")
-  set guioptions=-t
   set guioptions=e
 endif
 
