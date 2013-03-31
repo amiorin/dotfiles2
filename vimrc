@@ -59,14 +59,28 @@ Bundle 'kana/vim-textobj-indent'
 Bundle 'glts/vim-textobj-indblock'
 Bundle 'coderifous/textobj-word-column.vim'
 Bundle 'nelstrom/vim-visual-star-search'
-Bundle 'mmai/wikilink'
+" FIXME: we should remap the <CR>
+"Bundle 'mmai/wikilink'
 Bundle 'tomtom/quickfixsigns_vim'
 Bundle 'kshenoy/vim-signature'
 Bundle 'mhinz/vim-signify'
-Bundle 'suan/vim-instant-markdown'
 
-filetype plugin indent on     " required!
+filetype plugin indent on
 syntax on
+
+" projects {{{1
+let g:ctrlp_mruf_relative = 1
+nnoremap <silent> so :exec g:ctrlp_mruf_relative == 0 ? "let g:ctrlp_mruf_relative = 1 \| CtrlPMRUFiles" : "let g:ctrlp_mruf_relative = 0 \| CtrlPMRUFiles"<CR>
+let g:ctrlp_working_path_mode = 0
+augroup projects
+  autocmd!
+  autocmd BufEnter /Users/amiorin/Code/octopress/*  lcd /Users/amiorin/Code/octopress  | cd /Users/amiorin/Code/octopress
+  autocmd BufEnter /Users/amiorin/Code/gollum/*     lcd /Users/amiorin/Code/gollum     | cd /Users/amiorin/Code/gollum
+  autocmd BufEnter /Users/amiorin/Code/dotfiles/*   lcd /Users/amiorin/Code/dotfiles   | cd /Users/amiorin/Code/dotfiles
+  autocmd BufEnter /Users/amiorin/Code/scratch/*    lcd /Users/amiorin/Code/scratch    | cd /Users/amiorin/Code/scratch
+  autocmd BufEnter /Users/amiorin/Code/livereload/* lcd /Users/amiorin/Code/livereload | cd /Users/amiorin/Code/livereload
+  autocmd BufEnter /Users/amiorin/Code/reloadlive/* lcd /Users/amiorin/Code/reloadlive | cd /Users/amiorin/Code/reloadlive
+augroup END
 
 " signify {{{1
 let g:signify_sign_overwrite = 0
@@ -141,6 +155,11 @@ noremap <space>yy "*yy
 noremap <space>Y "*y$
 
 " ruby {{{1
+augroup ruby
+  autocmd!
+  autocmd FileType ruby,eruby iabbr bpry require'pry'; binding.pry
+augroup END
+
 fu! CustomFoldText()
     "get first non-blank line
     let fs = v:foldstart
@@ -161,6 +180,8 @@ fu! CustomFoldText()
     let expansionString = repeat(" ", w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage))
     return line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
 endf
+
+" fold on comment {{{1
 autocmd FileType ruby,eruby,zsh
       \ setlocal foldmethod=expr |
       \ setlocal foldexpr=getline(v:lnum)=~'^\\s*#' |
@@ -276,7 +297,6 @@ set noshowmode
 set notimeout
 set history=2000
 set laststatus=2
-set showtabline=1
 set showcmd
 set nowrap
 set number
