@@ -74,12 +74,12 @@ nnoremap <silent> so :exec g:ctrlp_mruf_relative == 0 ? "let g:ctrlp_mruf_relati
 let g:ctrlp_working_path_mode = 0
 augroup projects
   autocmd!
-  autocmd BufEnter /Users/amiorin/Code/octopress/*  lcd /Users/amiorin/Code/octopress  | cd /Users/amiorin/Code/octopress
-  autocmd BufEnter /Users/amiorin/Code/gollum/*     lcd /Users/amiorin/Code/gollum     | cd /Users/amiorin/Code/gollum
-  autocmd BufEnter /Users/amiorin/Code/dotfiles/*   lcd /Users/amiorin/Code/dotfiles   | cd /Users/amiorin/Code/dotfiles
-  autocmd BufEnter /Users/amiorin/Code/scratch/*    lcd /Users/amiorin/Code/scratch    | cd /Users/amiorin/Code/scratch
-  autocmd BufEnter /Users/amiorin/Code/livereload/* lcd /Users/amiorin/Code/livereload | cd /Users/amiorin/Code/livereload
-  autocmd BufEnter /Users/amiorin/Code/reloadlive/* lcd /Users/amiorin/Code/reloadlive | cd /Users/amiorin/Code/reloadlive
+  autocmd BufEnter /Users/amiorin/Code/octopress/*  lcd /Users/amiorin/Code/octopress
+  autocmd BufEnter /Users/amiorin/Code/gollum/*     lcd /Users/amiorin/Code/gollum
+  autocmd BufEnter /Users/amiorin/Code/dotfiles/*   lcd /Users/amiorin/Code/dotfiles
+  autocmd BufEnter /Users/amiorin/Code/scratch/*    lcd /Users/amiorin/Code/scratch
+  autocmd BufEnter /Users/amiorin/Code/livereload/* lcd /Users/amiorin/Code/livereload
+  autocmd BufEnter /Users/amiorin/Code/reloadlive/* lcd /Users/amiorin/Code/reloadlive
 augroup END
 
 " signify {{{1
@@ -269,11 +269,7 @@ let loaded_matchparen = 1
 
 " solarized {{{1
 colorscheme solarized
-if has("gui_running")
-  set background=dark
-else
-  set background=light
-endif
+set background=dark
 
 " no sound {{{1
 set visualbell
