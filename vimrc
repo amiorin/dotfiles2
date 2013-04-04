@@ -63,10 +63,17 @@ Bundle 'nelstrom/vim-visual-star-search'
 "Bundle 'mmai/wikilink'
 Bundle 'tomtom/quickfixsigns_vim'
 Bundle 'kshenoy/vim-signature'
+Bundle 'tpope/vim-dispatch'
 Bundle 'mhinz/vim-signify'
 
 filetype plugin indent on
 syntax on
+
+" rvm {{{1
+augroup rvm
+  autocmd!
+  autocmd BufEnter * Rvm
+augroup END
 
 " projects {{{1
 let g:ctrlp_mruf_relative = 1
@@ -74,12 +81,19 @@ nnoremap <silent> so :exec g:ctrlp_mruf_relative == 0 ? "let g:ctrlp_mruf_relati
 let g:ctrlp_working_path_mode = 0
 augroup projects
   autocmd!
-  autocmd BufEnter /Users/amiorin/Code/octopress/*  lcd /Users/amiorin/Code/octopress
-  autocmd BufEnter /Users/amiorin/Code/gollum/*     lcd /Users/amiorin/Code/gollum
-  autocmd BufEnter /Users/amiorin/Code/dotfiles/*   lcd /Users/amiorin/Code/dotfiles
-  autocmd BufEnter /Users/amiorin/Code/scratch/*    lcd /Users/amiorin/Code/scratch
-  autocmd BufEnter /Users/amiorin/Code/livereload/* lcd /Users/amiorin/Code/livereload
-  autocmd BufEnter /Users/amiorin/Code/reloadlive/* lcd /Users/amiorin/Code/reloadlive
+  autocmd BufEnter /Users/amiorin/Code/octopress/*     lcd /Users/amiorin/Code/octopress
+  autocmd BufEnter /Users/amiorin/Code/gollum/*        lcd /Users/amiorin/Code/gollum
+  autocmd BufEnter /Users/amiorin/Code/gsource/*       lcd /Users/amiorin/Code/gsource
+  autocmd BufEnter /Users/amiorin/Code/markup/*        lcd /Users/amiorin/Code/markup
+  autocmd BufEnter /Users/amiorin/Code/glib/*          lcd /Users/amiorin/Code/glib
+  autocmd BufEnter /Users/amiorin/Code/sandbox/*       lcd /Users/amiorin/Code/sandbox
+  autocmd BufEnter /Users/amiorin/Code/gollum/Todo.md  lcd /Users/amiorin/Code/gollum     | let b:title = "todo"
+  autocmd BufEnter /Users/amiorin/Code/dotfiles/*      lcd /Users/amiorin/Code/dotfiles
+  autocmd BufEnter /Users/amiorin/Code/dotfiles/vimrc  lcd /Users/amiorin/Code/dotfiles   | let b:title = "vimrc"
+  autocmd BufEnter /Users/amiorin/Code/dotfiles/gvimrc lcd /Users/amiorin/Code/dotfiles   | let b:title = "gvimrc"
+  autocmd BufEnter /Users/amiorin/Code/scratch/*       lcd /Users/amiorin/Code/scratch
+  autocmd BufEnter /Users/amiorin/Code/livereload/*    lcd /Users/amiorin/Code/livereload
+  autocmd BufEnter /Users/amiorin/Code/reloadlive/*    lcd /Users/amiorin/Code/reloadlive
 augroup END
 
 " signify {{{1
@@ -153,6 +167,12 @@ map Y y$
 noremap <space>y "*y
 noremap <space>yy "*yy
 noremap <space>Y "*y$
+
+" markdown {{{1
+augroup markdown
+  autocmd!
+  autocmd FileType markdown iabbr \|\|\| \|\|\|<cr>\-\-\- \| \-\-\-
+augroup END
 
 " ruby {{{1
 augroup ruby
@@ -229,7 +249,7 @@ let g:EasyMotion_leader_key = '<Space>'
 nnoremap <space>a :Ack 
 
 " powerline {{{1
-set guifont=Menlo\ for\ Powerline:h18
+set guifont=Menlo\ for\ Powerline:h12
 let g:Powerline_symbols = 'fancy'
 
 " NERDTree and other sidebars {{{1

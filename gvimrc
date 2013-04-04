@@ -2,14 +2,22 @@ macmenu File.Print          key=<Nop>
 macmenu File.Open\.\.\.     key=<Nop>
 macmenu Tools.List\ Errors  key=<Nop>
 
-" cwd {{{1
-augroup cwd
+" project {{{1
+function! TabTitle()
+  let title = substitute(getcwd(), $HOME . '/Code/', '', '') . "/" . expand("%:p:t")
+  let title = substitute(title, "\/$", '', '')
+  let t:title = exists("b:title") ? b:title : title
+endfunction
+augroup project
   au!
-  au CursorMoved,WinEnter * call settabvar(tabpagenr(),'cwd', substitute(getcwd(), $HOME . '/Code/', '', ''))
+  au BufEnter,BufRead,WinEnter * call TabTitle()
+  au BufEnter,BufRead,WinEnter * let &titlestring = getcwd() . " " . rvm#statusline()
 augroup END
-set guitablabel=%{gettabvar(v:lnum,'cwd')}
+set guitablabel=%N-%{gettabvar(v:lnum,'title')}
 set showtabline=2
+set title
 
+" tabs {{{1
 let s:windowmapnr = 0
 let s:wins='1234567890!@#$%^&*()'
 while (s:windowmapnr < strlen(s:wins))
@@ -20,6 +28,3 @@ while (s:windowmapnr < strlen(s:wins))
     let s:windowmapnr += 1
 endwhile
 unlet s:windowmapnr s:wins
-auto BufEnter * let &titlestring = getcwd()
-set title
-
