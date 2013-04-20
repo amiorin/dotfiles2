@@ -1,21 +1,10 @@
 macmenu File.Print          key=<Nop>
 macmenu File.Open\.\.\.     key=<Nop>
 macmenu Tools.List\ Errors  key=<Nop>
+macmenu File.Close          key=<Nop>
 
-" project {{{1
-function! TabTitle()
-  let title = substitute(getcwd(), $HOME . '/Code/', '', '') . "/" . expand("%:p:t")
-  let title = substitute(title, "\/$", '', '')
-  let t:title = exists("b:title") ? b:title : title
-endfunction
-augroup project
-  au!
-  au BufEnter,BufRead,WinEnter * call TabTitle()
-  au BufEnter,BufRead,WinEnter * let &titlestring = getcwd() . " " . rvm#statusline()
-augroup END
-set guitablabel=%N-%{gettabvar(v:lnum,'title')}
-set showtabline=2
-set title
+" tabclose like chrome {{{1
+noremap <silent><D-w> :if tabpagenr() != tabpagenr('$') && winnr('$') == 1<CR>:tabclose<CR>:if tabpagenr() > 1<CR>:tabprev<CR>:endif<CR>:else<CR>:q<CR>:endif<CR>
 
 " tabs {{{1
 let s:windowmapnr = 0

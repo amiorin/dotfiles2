@@ -5,6 +5,28 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
 
+set rtp+=~/.vim/bundle/vim-project/
+call project#rc("~/Code")
+
+Project 'leitner'
+Project 'octopress'
+Project 'gollum'
+Project 'gsource'
+Project 'markup'
+Project 'glib'
+Project 'sandbox'
+Project 'dotfiles'
+Project 'gollum/Todo.md'                       , 'todo'
+Project 'dotfiles/vimrc'                       , 'vimrc'
+Project 'dotfiles/gvimrc'                      , 'gvimrc'
+Project 'dotfiles/zshrc'                       , 'zshrc'
+Project '~/.vim/bundle/vim-fenced-code-blocks' , 'fenced'
+Project '~/.vim/bundle/vim-project'            , 'project'
+Project '~/.vim/bundle/vim-bookmarks'          , 'bookmarks'
+Project 'scratch'
+Project 'reloadlive'
+Project 'flashcards'
+
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
@@ -14,6 +36,10 @@ Bundle 'amiorin/ctrlp-z'
 Bundle 'amiorin/vim-colors-solarized'
 Bundle 'amiorin/vim-eval'
 Bundle 'amiorin/tinykeymap_vim'
+Bundle 'amiorin/vim-leitner'
+Bundle 'amiorin/vim-fenced-code-blocks'
+Bundle 'amiorin/vim-bookmarks'
+Bundle 'amiorin/vim-project'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'dahu/vim-fanfingtastic'
 Bundle 'scrooloose/syntastic'
@@ -21,7 +47,10 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'majutsushi/tagbar'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'ervandew/supertab'
-Bundle 'ervandew/screen'
+" with screen or tmux
+"Bundle 'ervandew/screen'
+" with iTerm and MacVim
+Bundle 'gcmt/tube.vim'
 Bundle 'mileszs/ack.vim'
 Bundle 'dahu/LearnVim'
 Bundle 'guns/paredit'
@@ -38,7 +67,8 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-rvm'
+Bundle 'tpope/vim-ragtag'
+Bundle 'amiorin/vim-rvm'
 Bundle 'tpope/vim-rails'
 Bundle 'pangloss/vim-javascript'
 Bundle 'godlygeek/tabular'
@@ -64,7 +94,8 @@ Bundle 'nelstrom/vim-visual-star-search'
 Bundle 'tomtom/quickfixsigns_vim'
 Bundle 'kshenoy/vim-signature'
 Bundle 'tpope/vim-dispatch'
-Bundle 'mhinz/vim-signify'
+" too slow
+"Bundle 'mhinz/vim-signify'
 
 filetype plugin indent on
 syntax on
@@ -75,26 +106,14 @@ augroup rvm
   autocmd BufEnter * Rvm
 augroup END
 
+" tube {{{1
+let g:tube_terminal = 'iterm'
+
 " projects {{{1
 let g:ctrlp_mruf_relative = 1
+let g:ctrlp_show_hidden = 1
 nnoremap <silent> so :exec g:ctrlp_mruf_relative == 0 ? "let g:ctrlp_mruf_relative = 1 \| CtrlPMRUFiles" : "let g:ctrlp_mruf_relative = 0 \| CtrlPMRUFiles"<CR>
 let g:ctrlp_working_path_mode = 0
-augroup projects
-  autocmd!
-  autocmd BufEnter /Users/amiorin/Code/octopress/*     lcd /Users/amiorin/Code/octopress
-  autocmd BufEnter /Users/amiorin/Code/gollum/*        lcd /Users/amiorin/Code/gollum
-  autocmd BufEnter /Users/amiorin/Code/gsource/*       lcd /Users/amiorin/Code/gsource
-  autocmd BufEnter /Users/amiorin/Code/markup/*        lcd /Users/amiorin/Code/markup
-  autocmd BufEnter /Users/amiorin/Code/glib/*          lcd /Users/amiorin/Code/glib
-  autocmd BufEnter /Users/amiorin/Code/sandbox/*       lcd /Users/amiorin/Code/sandbox
-  autocmd BufEnter /Users/amiorin/Code/gollum/Todo.md  lcd /Users/amiorin/Code/gollum     | let b:title = "todo"
-  autocmd BufEnter /Users/amiorin/Code/dotfiles/*      lcd /Users/amiorin/Code/dotfiles
-  autocmd BufEnter /Users/amiorin/Code/dotfiles/vimrc  lcd /Users/amiorin/Code/dotfiles   | let b:title = "vimrc"
-  autocmd BufEnter /Users/amiorin/Code/dotfiles/gvimrc lcd /Users/amiorin/Code/dotfiles   | let b:title = "gvimrc"
-  autocmd BufEnter /Users/amiorin/Code/scratch/*       lcd /Users/amiorin/Code/scratch
-  autocmd BufEnter /Users/amiorin/Code/livereload/*    lcd /Users/amiorin/Code/livereload
-  autocmd BufEnter /Users/amiorin/Code/reloadlive/*    lcd /Users/amiorin/Code/reloadlive
-augroup END
 
 " signify {{{1
 let g:signify_sign_overwrite = 0
@@ -221,6 +240,7 @@ autocmd FileType vim set et
 " xml {{{1
 let g:xml_syntax_folding = 1
 set foldmethod=syntax
+
 " diff {{{1
 nnoremap <silent> <space>dt :diffthis<CR>
 nnoremap <silent> <space>do :diffoff<CR>
@@ -264,6 +284,7 @@ map sc :NERDTree %%<CR>
 nnoremap <silent> sa :vertical resize 40<CR>
 nnoremap <silent> ss :NERDTreeToggle<CR>
 nnoremap <silent> s. :NERDTree .<CR>
+nnoremap <silent> s/ :NERDTree <C-R>=expand('%:h').'/'<CR><CR>
 nnoremap <silent> sd :TagbarToggle<CR>
 nnoremap <silent> sz :CtrlPZ<CR>
 nnoremap <silent> st :CtrlPFunky<CR>
@@ -277,12 +298,6 @@ let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_map = 'sp'
 let g:ctrlp_cmd = 'CtrlPMRUFiles'
 let g:ctrlp_switch_buffer = 0
-
-" buffergator {{{1
-let g:buffergator_display_regime = "bufname"
-let g:buffergator_sort_regime = "filepath"
-let g:buffergator_viewport_split_policy = "T"
-let g:buffergator_split_size = 10
 
 " no matchparen {{{1
 let loaded_matchparen = 1
@@ -337,7 +352,7 @@ set expandtab
 " autoread and autowrite {{{1
 augroup save
   au!
-  au FocusLost * update
+  au FocusLost * windo update
 augroup END
 set nobackup
 set noswapfile
