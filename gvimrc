@@ -4,7 +4,7 @@ macmenu Tools.List\ Errors  key=<Nop>
 macmenu File.Close          key=<Nop>
 
 " tabclose like chrome {{{1
-noremap <silent><D-w> :if tabpagenr() != tabpagenr('$') && winnr('$') == 1<CR>:tabclose<CR>:if tabpagenr() > 1<CR>:tabprev<CR>:endif<CR>:else<CR>:q<CR>:endif<CR>
+noremap <silent> <D-w> :if tabpagenr() != tabpagenr('$') && winnr('$') == 1<CR>:tabclose<CR>:if tabpagenr() > 1<CR>:tabprev<CR>:endif<CR>:else<CR>:SmartClose<CR>:endif<CR>
 
 " tabs {{{1
 let s:windowmapnr = 0
@@ -17,3 +17,6 @@ while (s:windowmapnr < strlen(s:wins))
     let s:windowmapnr += 1
 endwhile
 unlet s:windowmapnr s:wins
+
+" vim-project {{{1
+set showtabline=2

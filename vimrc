@@ -8,24 +8,27 @@ filetype off                   " required!
 set rtp+=~/.vim/bundle/vim-project/
 call project#rc("~/Code")
 
-Project 'leitner'
-Project 'octopress'
+Project 'scratch'
+
+Project 'dotfiles'
+File    'dotfiles/vimrc'                       , 'vimrc'
+File    'dotfiles/gvimrc'                      , 'gvimrc'
+File    'dotfiles/zshrc'                       , 'zshrc'
+
 Project 'gollum'
+File    'gollum/Todo.md'                       , 'todo'
+
+Project 'octopress'
 Project 'gsource'
 Project 'markup'
 Project 'glib'
-Project 'sandbox'
-Project 'dotfiles'
-Project 'gollum/Todo.md'                       , 'todo'
-Project 'dotfiles/vimrc'                       , 'vimrc'
-Project 'dotfiles/gvimrc'                      , 'gvimrc'
-Project 'dotfiles/zshrc'                       , 'zshrc'
+Project 'reloadlive'
+Project 'leitner'
+Project 'flashcards'
+
 Project '~/.vim/bundle/vim-fenced-code-blocks' , 'fenced'
 Project '~/.vim/bundle/vim-project'            , 'project'
 Project '~/.vim/bundle/vim-bookmarks'          , 'bookmarks'
-Project 'scratch'
-Project 'reloadlive'
-Project 'flashcards'
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -96,6 +99,7 @@ Bundle 'kshenoy/vim-signature'
 Bundle 'tpope/vim-dispatch'
 " too slow
 "Bundle 'mhinz/vim-signify'
+Bundle 'szw/vim-smartclose'
 
 filetype plugin indent on
 syntax on
