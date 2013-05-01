@@ -5,30 +5,53 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
 
+let g:project_use_nerdtree = 1
+
 set rtp+=~/.vim/bundle/vim-project/
 call project#rc("~/Code")
 
-Project 'scratch'
+Project  'scratch'
 
-Project 'dotfiles'
-File    'dotfiles/vimrc'                       , 'vimrc'
-File    'dotfiles/gvimrc'                      , 'gvimrc'
-File    'dotfiles/zshrc'                       , 'zshrc'
+Project  'dotfiles'
+File     'dotfiles/vimrc'                       , 'vimrc'
+File     'dotfiles/gvimrc'                      , 'gvimrc'
+File     'dotfiles/zshrc'                       , 'zshrc'
 
-Project 'gollum'
-File    'gollum/Todo.md'                       , 'todo'
+Project  'gollum'
+File     'gollum/Todo.md'                       , 'todo'
+Callback 'gollum'                               , 'RemoveTextWidth'
 
-Project 'octopress'
-Project 'gsource'
-Project 'markup'
-Project 'glib'
-Project 'reloadlive'
-Project 'leitner'
-Project 'flashcards'
+function! RemoveTextWidth(...) abort
+  setlocal textwidth=0
+endfunction
 
-Project '~/.vim/bundle/vim-fenced-code-blocks' , 'fenced'
-Project '~/.vim/bundle/vim-project'            , 'project'
-Project '~/.vim/bundle/vim-bookmarks'          , 'bookmarks'
+Project  'nodevim'
+Project  'resume'
+Project  'vim'
+Project  'macvim'
+Project  'octopress'
+Project  'gsource'
+Project  'markup'
+Project  'glib'
+Project  'reloadlive'
+Project  'flashcards'
+Project  'leitner'
+Callback 'leitner'                              , 'AddSpecToPath'
+
+function! AddSpecToPath(...) abort
+  setlocal path+=spec
+endfunction
+
+Project  '~/.vim/bundle'
+Project  '~/.vim/bundle/vim-fenced-code-blocks' , 'fenced'
+Project  '~/.vim/bundle/vim-project'            , 'project'
+Project  '~/.vim/bundle/vim-bookmarks'          , 'bookmarks'
+Project  '~/.vim/bundle/ctrlp.vim'              , 'ctrlp'
+Project  '~/.vim/bundle/ctrlp-z'                , 'ctrlp-z'
+Project  '~/.vim/bundle/vim-eval'               , 'eval'
+Project  '~/.vim/bundle/vim-asign'              , 'asign'
+Project  '~/.vim/bundle/tube.vim'               , 'tube'
+Project  '~/.vim/bundle/vim-startify'           , 'startify'
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -57,7 +80,7 @@ Bundle 'gcmt/tube.vim'
 Bundle 'mileszs/ack.vim'
 Bundle 'dahu/LearnVim'
 Bundle 'guns/paredit'
-Bundle 'guyzmo/Rainbow-Parentheses-Improved-and2'
+"Bundle 'guyzmo/Rainbow-Parentheses-Improved-and2'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-unimpaired'
@@ -98,8 +121,12 @@ Bundle 'tomtom/quickfixsigns_vim'
 Bundle 'kshenoy/vim-signature'
 Bundle 'tpope/vim-dispatch'
 " too slow
-"Bundle 'mhinz/vim-signify'
+" Bundle 'mhinz/vim-signify'
+" Bundle 'airblade/vim-gitgutter'
+Bundle 'tpope/vim-obsession'
 Bundle 'szw/vim-smartclose'
+Bundle 'amiorin/vim-asign'
+"Bundle 'mhinz/vim-startify'
 
 filetype plugin indent on
 syntax on
@@ -109,6 +136,22 @@ augroup rvm
   autocmd!
   autocmd BufEnter * Rvm
 augroup END
+
+" vim-eval {{{1
+let g:eval_viml_n = "<D-e>"
+let g:eval_viml_v = "<D-e>"
+
+" no startup message {{{1
+set shortmess+=I
+
+" substitute global {{{1
+set gdefault
+
+" encoding {{{1
+set encoding=utf-8
+
+" modeline {{{1
+set nomodeline
 
 " tube {{{1
 let g:tube_terminal = 'iterm'
@@ -278,6 +321,7 @@ let g:Powerline_symbols = 'fancy'
 
 " NERDTree and other sidebars {{{1
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
+cnoremap %b ~/.vim/bundle/
 let g:NERDTreeMapCWD = "<F2>"
 let g:NERDTreeMapHelp = "<F1>"
 let g:NERDTreeQuitOnOpen = 1
@@ -292,12 +336,13 @@ nnoremap <silent> s/ :NERDTree <C-R>=expand('%:h').'/'<CR><CR>
 nnoremap <silent> sd :TagbarToggle<CR>
 nnoremap <silent> sz :CtrlPZ<CR>
 nnoremap <silent> st :CtrlPFunky<CR>
-nnoremap <silent> sf :CtrlPF<CR>
+nnoremap <silent> sf :CtrlP<CR>
 nnoremap <silent> sb :CtrlPBuffer<CR>
 nnoremap <silent> sh :h<CR>:CtrlPTag<CR>
+nnoremap <silent> sw :Welcome<CR>
 
 " CtrlP {{{1
-let g:ctrlp_z_nerdtree = 0
+let g:ctrlp_z_nerdtree = 1
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_map = 'sp'
 let g:ctrlp_cmd = 'CtrlPMRUFiles'
@@ -399,6 +444,16 @@ inoremap <C-l> <Esc><C-w>l
 nnoremap <space>s :sp #<cr>
 nnoremap <space>v :vsp #<cr>
 
+" split right below {{{1
+set splitbelow
+set splitright
+
 " rspec {{{1
 autocmd BufRead *_spec.rb syn keyword rubyRspec describe context it specify it_should_behave_like before after setup subject its shared_examples_for shared_context let
 highlight def link rubyRspec Function
+
+" less {{{1
+au BufRead,BufNewFile *.less setfiletype css
+
+" python {{{1
+autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4
