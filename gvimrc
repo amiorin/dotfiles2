@@ -7,6 +7,7 @@ macmenu Edit.Find.Use\ Selection\ for\ Find key=<Nop>
 
 " tabclose like chrome {{{1
 noremap <silent> <D-w> :if tabpagenr() != tabpagenr('$') && winnr('$') == 1<CR>:tabclose<CR>:if tabpagenr() > 1<CR>:tabprev<CR>:endif<CR>:else<CR>:SmartClose<CR>:endif<CR>
+inoremap <silent> <D-w> <Esc>:if tabpagenr() != tabpagenr('$') && winnr('$') == 1<CR>:tabclose<CR>:if tabpagenr() > 1<CR>:tabprev<CR>:endif<CR>:else<CR>:SmartClose<CR>:endif<CR>
 
 " tabs {{{1
 let s:windowmapnr = 0

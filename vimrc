@@ -12,6 +12,14 @@ call project#rc("~/Code")
 
 Project  'scratch'
 
+Project  'modo/flash'
+Project  '/usr/local/etc/nginx'
+Project  'modomoto/modocrm'
+Project  'modomoto/modoprint'
+Project  'modomoto/sugarcrm'
+Project  'modomoto/modowiki'
+Project  'modomoto/foo'
+
 Project  'dotfiles'
 File     'dotfiles/vimrc'                       , 'vimrc'
 File     'dotfiles/gvimrc'                      , 'gvimrc'
@@ -52,6 +60,7 @@ Project  '~/.vim/bundle/vim-eval'               , 'eval'
 Project  '~/.vim/bundle/vim-asign'              , 'asign'
 Project  '~/.vim/bundle/tube.vim'               , 'tube'
 Project  '~/.vim/bundle/vim-startify'           , 'startify'
+Project  '~/.vim/bundle/vim-leitner'
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -401,7 +410,7 @@ set expandtab
 " autoread and autowrite {{{1
 augroup save
   au!
-  au FocusLost * windo update
+  au FocusLost * wall
 augroup END
 set nobackup
 set noswapfile
