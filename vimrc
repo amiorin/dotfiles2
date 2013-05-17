@@ -19,6 +19,11 @@ Project  'modomoto/modoprint'
 Project  'modomoto/sugarcrm'
 Project  'modomoto/modowiki'
 Project  'modomoto/foo'
+Project  'modomoto/authy'
+
+Project  'rendr-app-template'                   , 'rendr'
+Project  'vim-ruby-debugger'
+Project  'debugger-xml'
 
 Project  'dotfiles'
 File     'dotfiles/vimrc'                       , 'vimrc'
@@ -27,6 +32,7 @@ File     'dotfiles/zshrc'                       , 'zshrc'
 
 Project  'gollum'
 File     'gollum/Todo.md'                       , 'todo'
+File     'gollum/Bookmarks.md'                  , 'bookmarks'
 Callback 'gollum'                               , 'RemoveTextWidth'
 
 function! RemoveTextWidth(...) abort
@@ -136,6 +142,7 @@ Bundle 'tpope/vim-obsession'
 Bundle 'szw/vim-smartclose'
 Bundle 'amiorin/vim-asign'
 "Bundle 'mhinz/vim-startify'
+Bundle 'nono/vim-handlebars'
 
 filetype plugin indent on
 syntax on
