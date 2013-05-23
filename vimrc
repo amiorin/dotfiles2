@@ -7,66 +7,81 @@ filetype off                   " required!
 
 let g:project_use_nerdtree = 1
 
-set rtp+=~/.vim/bundle/vim-project/
-call project#rc("~/Code")
+if hostname() ==# 'air.local'
+  set rtp+=~/.vim/bundle/vim-project/
+  call project#rc("~/Code")
 
-Project  'scratch'
+  Project  'scratch'
 
-Project  'modo/flash'
-Project  '/usr/local/etc/nginx'
-Project  'modomoto/modocrm'
-Project  'modomoto/modoprint'
-Project  'modomoto/sugarcrm'
-Project  'modomoto/modowiki'
-Project  'modomoto/foo'
-Project  'modomoto/authy'
+  Project  'gvim'
 
-Project  'rendr-app-template'                   , 'rendr'
-Project  'vim-ruby-debugger'
-Project  'debugger-xml'
+  Project  'modo/flash'
+  Project  '/usr/local/etc/nginx'
+  " Project  'modomoto/modocrm'
+  " Project  'modomoto/modoprint'
+  " Project  'modomoto/sugarcrm'
+  " Project  'modomoto/modowiki'
+  " Project  'modomoto/foo'
+  " Project  'modomoto/authy'
 
-Project  'dotfiles'
-File     'dotfiles/vimrc'                       , 'vimrc'
-File     'dotfiles/gvimrc'                      , 'gvimrc'
-File     'dotfiles/zshrc'                       , 'zshrc'
+  Project  'rendr-app-template'                   , 'rendr'
+  Project  'vim-ruby-debugger'
+  Project  'debugger-xml'
 
-Project  'gollum'
-File     'gollum/Todo.md'                       , 'todo'
-File     'gollum/Bookmarks.md'                  , 'bookmarks'
-Callback 'gollum'                               , 'RemoveTextWidth'
+  Project  'dotfiles'
+  File     'dotfiles/vimrc'                       , 'vimrc'
+  File     'dotfiles/gvimrc'                      , 'gvimrc'
+  File     'dotfiles/zshrc'                       , 'zshrc'
 
-function! RemoveTextWidth(...) abort
-  setlocal textwidth=0
-endfunction
+  Project  'gollum'
+  File     'gollum/Todo.md'                       , 'todo'
+  File     'gollum/Bookmarks.md'                  , 'favorites'
+  Callback 'gollum'                               , 'RemoveTextWidth'
 
-Project  'nodevim'
-Project  'resume'
-Project  'vim'
-Project  'macvim'
-Project  'octopress'
-Project  'gsource'
-Project  'markup'
-Project  'glib'
-Project  'reloadlive'
-Project  'flashcards'
-Project  'leitner'
-Callback 'leitner'                              , 'AddSpecToPath'
+  function! RemoveTextWidth(...) abort
+    setlocal textwidth=0
+  endfunction
 
-function! AddSpecToPath(...) abort
-  setlocal path+=spec
-endfunction
+  Project  'nodevim'
+  Project  'resume'
+  Project  'vim'
+  Project  'macvim'
+  Project  'octopress'
+  Project  'gsource'
+  Project  'markup'
+  Project  'glib'
+  Project  'reloadlive'
+  Project  'flashcards'
+  Project  'leitner'
+  Callback 'leitner'                              , 'AddSpecToPath'
 
-Project  '~/.vim/bundle'
-Project  '~/.vim/bundle/vim-fenced-code-blocks' , 'fenced'
-Project  '~/.vim/bundle/vim-project'            , 'project'
-Project  '~/.vim/bundle/vim-bookmarks'          , 'bookmarks'
-Project  '~/.vim/bundle/ctrlp.vim'              , 'ctrlp'
-Project  '~/.vim/bundle/ctrlp-z'                , 'ctrlp-z'
-Project  '~/.vim/bundle/vim-eval'               , 'eval'
-Project  '~/.vim/bundle/vim-asign'              , 'asign'
-Project  '~/.vim/bundle/tube.vim'               , 'tube'
-Project  '~/.vim/bundle/vim-startify'           , 'startify'
-Project  '~/.vim/bundle/vim-leitner'
+  function! AddSpecToPath(...) abort
+    setlocal path+=spec
+  endfunction
+
+  Project  '~/.vim/bundle'
+  Project  '~/.vim/bundle/vim-fenced-code-blocks' , 'fenced'
+  Project  '~/.vim/bundle/vim-project'            , 'project'
+  Project  '~/.vim/bundle/vim-bookmarks'          , 'bookmarks'
+  Project  '~/.vim/bundle/ctrlp.vim'              , 'ctrlp'
+  Project  '~/.vim/bundle/ctrlp-z'                , 'ctrlp-z'
+  Project  '~/.vim/bundle/vim-eval'               , 'eval'
+  Project  '~/.vim/bundle/vim-asign'              , 'asign'
+  Project  '~/.vim/bundle/tube.vim'               , 'tube'
+  Project  '~/.vim/bundle/vim-startify'           , 'startify'
+  Project  '~/.vim/bundle/vim-leitner'
+elseif hostname() ==# 'TOSHIBA'
+  set rtp+=~/.vim/bundle/vim-project/
+  call project#rc("~/Code")
+
+  Project  'scratch'
+  Callback 'scratch'                              , 'Foo'
+
+  function! Foo(...) abort
+    echom "foo"
+  endfunction
+
+endif
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -96,6 +111,8 @@ Bundle 'mileszs/ack.vim'
 Bundle 'dahu/LearnVim'
 Bundle 'guns/paredit'
 "Bundle 'guyzmo/Rainbow-Parentheses-Improved-and2'
+"newer, I've to try
+"Bundle 'amdt/vim-niji'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-unimpaired'
@@ -140,7 +157,9 @@ Bundle 'tpope/vim-dispatch'
 " Bundle 'airblade/vim-gitgutter'
 Bundle 'tpope/vim-obsession'
 Bundle 'szw/vim-smartclose'
-Bundle 'amiorin/vim-asign'
+if hostname() ==# 'air.local'
+  Bundle 'amiorin/vim-asign'
+endif
 "Bundle 'mhinz/vim-startify'
 Bundle 'nono/vim-handlebars'
 
@@ -148,14 +167,16 @@ filetype plugin indent on
 syntax on
 
 " rvm {{{1
-augroup rvm
-  autocmd!
-  autocmd BufEnter * Rvm
-augroup END
+if hostname() ==# 'air.local'
+  augroup rvm
+    autocmd!
+    autocmd BufEnter * Rvm
+  augroup END
 
-" vim-eval {{{1
-let g:eval_viml_n = "<D-e>"
-let g:eval_viml_v = "<D-e>"
+  " vim-eval {{{1
+  let g:eval_viml_n = "<D-e>"
+  let g:eval_viml_v = "<D-e>"
+endif
 
 " no startup message {{{1
 set shortmess+=I
@@ -332,7 +353,11 @@ let g:EasyMotion_leader_key = '<Space>'
 nnoremap <space>a :Ack 
 
 " powerline {{{1
-set guifont=Menlo\ for\ Powerline:h12
+if hostname() ==# 'air.local'
+  set guifont=Menlo\ for\ Powerline:h12
+elseif hostname() ==# 'TOSHIBA'
+  set guifont=Consolas\ for\ Powerline\ FixedD:h12
+endif
 let g:Powerline_symbols = 'fancy'
 
 " NERDTree and other sidebars {{{1
@@ -415,10 +440,12 @@ set autoindent
 set expandtab
 
 " autoread and autowrite {{{1
-augroup save
-  au!
-  au FocusLost * wall
-augroup END
+if hostname() ==# 'air.local'
+  augroup save
+    au!
+    au FocusLost * wall
+  augroup END
+endif
 set nobackup
 set noswapfile
 set nowritebackup
@@ -473,3 +500,8 @@ au BufRead,BufNewFile *.less setfiletype css
 
 " python {{{1
 autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4
+
+if hostname() ==# 'TOSHIBA'
+  cd ~
+"  autocmd GUIEnter * call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)
+endif
