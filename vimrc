@@ -22,6 +22,14 @@ if hostname() ==# 'air.local'
 
   Project  'nodevim'
   Project  'resume'
+  Project  'halloween-2012'
+  Project  'terra/mystica'
+  Callback 'mystica'                              , 'AddPublicToPath'
+
+  function! AddPublicToPath(...) abort
+    setlocal path+=public
+  endfunction
+
   Project  'vim'
   Project  'macvim'
   Project  'octopress'
@@ -185,7 +193,7 @@ endif
 set shortmess+=I
 
 " substitute global {{{1
-set gdefault
+"set gdefault
 
 " encoding {{{1
 set encoding=utf-8
