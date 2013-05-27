@@ -15,32 +15,10 @@ if hostname() ==# 'air.local'
 
   Project  'gvim'
 
-  Project  'modo/flash'
-  Project  '/usr/local/etc/nginx'
-  " Project  'modomoto/modocrm'
-  " Project  'modomoto/modoprint'
-  " Project  'modomoto/sugarcrm'
-  " Project  'modomoto/modowiki'
-  " Project  'modomoto/foo'
-  " Project  'modomoto/authy'
-
   Project  'rendr-app-template'                   , 'rendr'
   Project  'vim-ruby-debugger'
   Project  'debugger-xml'
 
-  Project  'dotfiles'
-  File     'dotfiles/vimrc'                       , 'vimrc'
-  File     'dotfiles/gvimrc'                      , 'gvimrc'
-  File     'dotfiles/zshrc'                       , 'zshrc'
-
-  Project  'gollum'
-  File     'gollum/Todo.md'                       , 'todo'
-  File     'gollum/Bookmarks.md'                  , 'favorites'
-  Callback 'gollum'                               , 'RemoveTextWidth'
-
-  function! RemoveTextWidth(...) abort
-    setlocal textwidth=0
-  endfunction
 
   Project  'nodevim'
   Project  'resume'
@@ -81,6 +59,31 @@ elseif hostname() ==# 'TOSHIBA'
     echom "foo"
   endfunction
 
+elseif hostname() ==# 'retina.local'
+  set rtp+=~/.vim/bundle/vim-project/
+  call project#rc("~/Code")
+
+  Project  'scratch'
+
+  Project  'nugg.ad/analyser2'
+  Project  'nugg.ad/wiki'
+
+endif
+
+if hostname() =~ 'local'
+  Project  'gollum'
+  File     'gollum/Todo.md'                       , 'todo'
+  File     'gollum/Bookmarks.md'                  , 'favorites'
+  Callback 'gollum'                               , 'RemoveTextWidth'
+
+  function! RemoveTextWidth(...) abort
+    setlocal textwidth=0
+  endfunction
+
+  Project  'dotfiles'
+  File     'dotfiles/vimrc'                       , 'vimrc'
+  File     'dotfiles/gvimrc'                      , 'gvimrc'
+  File     'dotfiles/zshrc'                       , 'zshrc'
 endif
 
 set rtp+=~/.vim/bundle/vundle/
@@ -167,7 +170,7 @@ filetype plugin indent on
 syntax on
 
 " rvm {{{1
-if hostname() ==# 'air.local'
+if hostname() =~ 'local'
   augroup rvm
     autocmd!
     autocmd BufEnter * Rvm
@@ -357,6 +360,8 @@ if hostname() ==# 'air.local'
   set guifont=Menlo\ for\ Powerline:h12
 elseif hostname() ==# 'TOSHIBA'
   set guifont=Consolas\ for\ Powerline\ FixedD:h12
+elseif hostname() ==# 'retina.local'
+  set guifont=Menlo\ for\ Powerline:h18
 endif
 let g:Powerline_symbols = 'fancy'
 
@@ -440,7 +445,7 @@ set autoindent
 set expandtab
 
 " autoread and autowrite {{{1
-if hostname() ==# 'air.local'
+if hostname() =~ 'local'
   augroup save
     au!
     au FocusLost * wall

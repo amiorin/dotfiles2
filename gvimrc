@@ -1,4 +1,4 @@
-if hostname() ==# 'air.local'
+if hostname() =~ 'local'
   macmenu File.Print                          key=<Nop>
   macmenu File.Open\.\.\.                     key=<Nop>
   macmenu Tools.List\ Errors                  key=<Nop>
