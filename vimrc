@@ -23,12 +23,7 @@ if hostname() ==# 'air.local'
   Project  'nodevim'
   Project  'resume'
   Project  'halloween-2012'
-  Project  'terra/mystica'
-  Callback 'mystica'                              , 'AddPublicToPath'
 
-  function! AddPublicToPath(...) abort
-    setlocal path+=public
-  endfunction
 
   Project  'vim'
   Project  'macvim'
@@ -41,9 +36,6 @@ if hostname() ==# 'air.local'
   Project  'leitner'
   Callback 'leitner'                              , 'AddSpecToPath'
 
-  function! AddSpecToPath(...) abort
-    setlocal path+=spec
-  endfunction
 
   Project  '~/.vim/bundle'
   Project  '~/.vim/bundle/vim-fenced-code-blocks' , 'fenced'
@@ -63,6 +55,7 @@ elseif hostname() ==# 'TOSHIBA'
   Project  'scratch'
   Callback 'scratch'                              , 'Foo'
 
+  " for testing on win32
   function! Foo(...) abort
     echom "foo"
   endfunction
@@ -72,10 +65,9 @@ elseif hostname() ==# 'retina.local'
   call project#rc("~/Code")
 
   Project  'scratch'
-
-  Project  'nugg.ad/analyser2'
-  Project  'nugg.ad/wiki'
-
+  " Project  'nugg.ad/analyser2'
+  " Project  'nugg.ad/wiki'
+  Project  '/Users/amiorin/Dropbox/analyser2'
 endif
 
 if hostname() =~ 'local'
@@ -83,16 +75,25 @@ if hostname() =~ 'local'
   File     'gollum/Todo.md'                       , 'todo'
   File     'gollum/Bookmarks.md'                  , 'favorites'
   Callback 'gollum'                               , 'RemoveTextWidth'
-
-  function! RemoveTextWidth(...) abort
-    setlocal textwidth=0
-  endfunction
-
   Project  'dotfiles'
   File     'dotfiles/vimrc'                       , 'vimrc'
   File     'dotfiles/gvimrc'                      , 'gvimrc'
   File     'dotfiles/zshrc'                       , 'zshrc'
+  Project  'terra/mystica'
+  Callback 'mystica'                              , 'AddPublicToPath'
 endif
+
+function! RemoveTextWidth(...) abort
+  setlocal textwidth=0
+endfunction
+
+function! AddSpecToPath(...) abort
+  setlocal path+=spec
+endfunction
+
+function! AddPublicToPath(...) abort
+  setlocal path+=public
+endfunction
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -173,6 +174,7 @@ if hostname() ==# 'air.local'
 endif
 "Bundle 'mhinz/vim-startify'
 Bundle 'nono/vim-handlebars'
+Bundle 'kchmck/vim-coffee-script'
 
 filetype plugin indent on
 syntax on
@@ -369,7 +371,7 @@ if hostname() ==# 'air.local'
 elseif hostname() ==# 'TOSHIBA'
   set guifont=Consolas\ for\ Powerline\ FixedD:h12
 elseif hostname() ==# 'retina.local'
-  set guifont=Menlo\ for\ Powerline:h18
+  set guifont=Menlo\ for\ Powerline:h14
 endif
 let g:Powerline_symbols = 'fancy'
 
@@ -517,4 +519,21 @@ autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4
 if hostname() ==# 'TOSHIBA'
   cd ~
 "  autocmd GUIEnter * call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)
+endif
+
+" coffee ctags
+if executable('coffeetags')
+  let g:tagbar_type_coffee = {
+        \ 'ctagsbin' : 'coffeetags',
+        \ 'ctagsargs' : '',
+        \ 'kinds' : [
+        \ 'f:functions',
+        \ 'o:object',
+        \ ],
+        \ 'sro' : ".",
+        \ 'kind2scope' : {
+        \ 'f' : 'object',
+        \ 'o' : 'object',
+        \ }
+        \ }
 endif

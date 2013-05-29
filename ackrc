@@ -1,6 +1,6 @@
 --follow
 --smart-case
--a
+-k
 --ignore-dir=tmp
 --ignore-dir=.vundle
 --ignore-dir=extras

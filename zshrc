@@ -25,6 +25,9 @@ plugins=(rvm lein git brew gem npm vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
+# no corrections please
+unsetopt correct_all
+
 # vi mode
 bindkey -v
 bindkey -M viins '^r' history-incremental-search-backward
