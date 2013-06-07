@@ -6,4 +6,5 @@
 --ignore-dir=extras
 --ignore-dir=log
 --ignore-dir=_site
---ignore-dir=assets
+--ignore-dir=node_modules
+--type-add=coffee:ext:coffee

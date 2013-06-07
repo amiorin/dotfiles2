@@ -64,10 +64,22 @@ elseif hostname() ==# 'retina.local'
   set rtp+=~/.vim/bundle/vim-project/
   call project#rc("~/Code")
 
-  Project  'scratch'
-  " Project  'nugg.ad/analyser2'
-  " Project  'nugg.ad/wiki'
+  Project  'nugg.ad/nuggad-compiler'
+  Project  'nugg.ad/angular-seed'
   Project  '/Users/amiorin/Dropbox/analyser2'
+  Project  'nugg.ad/karma'
+  Project  '~/.vim/bundle/vim-alternate'
+  Project  '~/.vim/bundle/vim-asign'
+  Project  '~/.vim/bundle/vim-project'
+  Project  '~/.vim/bundle/vim-leitner'
+  Project  'scratch'
+  Project  'nugg.ad/nuggad-api-service'
+  Project  'lispyscript'
+  " Project  'nugg.ad/wiki'
+  call project#config#callback("nuggad-compiler", project#utils#alternate(
+    \  [{'regex': '^src', 'string': 'spec'},
+    \   {'regex': '^spec', 'string': 'src'}]
+    \  ))
 endif
 
 if hostname() =~ 'local'
@@ -175,9 +187,17 @@ endif
 "Bundle 'mhinz/vim-startify'
 Bundle 'nono/vim-handlebars'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'thoughtbot/vim-rspec'
+Bundle 'vim-alternate'
 
 filetype plugin indent on
 syntax on
+
+" vim-rspec
+let g:rspec_command = "Dispatch zeus rspec {spec}"
+map <space>rt :call RunCurrentSpecFile()<CR>
+map <space>rs :call RunNearestSpec()<CR>
+map <space>rl :call RunLastSpec()<CR>
 
 " rvm {{{1
 if hostname() =~ 'local'
@@ -522,18 +542,19 @@ if hostname() ==# 'TOSHIBA'
 endif
 
 " coffee ctags
-if executable('coffeetags')
-  let g:tagbar_type_coffee = {
-        \ 'ctagsbin' : 'coffeetags',
-        \ 'ctagsargs' : '',
-        \ 'kinds' : [
-        \ 'f:functions',
-        \ 'o:object',
-        \ ],
-        \ 'sro' : ".",
-        \ 'kind2scope' : {
-        \ 'f' : 'object',
-        \ 'o' : 'object',
-        \ }
-        \ }
-endif
+" too slow
+" if executable('coffeetags')
+"   let g:tagbar_type_coffee = {
+"         \ 'ctagsbin' : 'coffeetags',
+"         \ 'ctagsargs' : '',
+"         \ 'kinds' : [
+"         \ 'f:functions',
+"         \ 'o:object',
+"         \ ],
+"         \ 'sro' : ".",
+"         \ 'kind2scope' : {
+"         \ 'f' : 'object',
+"         \ 'o' : 'object',
+"         \ }
+"         \ }
+" endif
