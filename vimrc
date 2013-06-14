@@ -6,11 +6,10 @@ set nocompatible               " be iMproved
 filetype off                   " required!
 
 let g:project_use_nerdtree = 1
+set rtp+=~/.vim/bundle/vim-project/
+call project#rc("~/Code")
 
 if hostname() ==# 'air.local'
-  set rtp+=~/.vim/bundle/vim-project/
-  call project#rc("~/Code")
-
   Project  'scratch'
 
   Project  'gvim'
@@ -49,9 +48,6 @@ if hostname() ==# 'air.local'
   Project  '~/.vim/bundle/vim-startify'           , 'startify'
   Project  '~/.vim/bundle/vim-leitner'
 elseif hostname() ==# 'TOSHIBA'
-  set rtp+=~/.vim/bundle/vim-project/
-  call project#rc("~/Code")
-
   Project  'scratch'
   Callback 'scratch'                              , 'Foo'
 
@@ -61,24 +57,32 @@ elseif hostname() ==# 'TOSHIBA'
   endfunction
 
 elseif hostname() ==# 'retina.local'
-  set rtp+=~/.vim/bundle/vim-project/
-  call project#rc("~/Code")
-
+  Project  'browserify-seed'
+  Project  'watchify'
   Project  'nugg.ad/nuggad-compiler'
+  Project  'lispyscript'
+  Project  'angular.js'
+  Project  'generator-browserify'
+  Project  'jquery2'
+  Project  'webapp'
+  Project  'angular-seed-with-browserify-and-mocha'
+  Project  'rendr-app-template'
+  Project  'carcounter'
+  Project  'reloadlive'
+  Project  '~/.vim/bundle/ctrlp.vim'
   Project  'nugg.ad/angular-seed'
   Project  '/Users/amiorin/Dropbox/analyser2'
+  Project  'nugg.ad/analyser2'                    , 'a2'
   Project  'nugg.ad/karma'
-  Project  '~/.vim/bundle/vim-alternate'
   Project  '~/.vim/bundle/vim-asign'
   Project  '~/.vim/bundle/vim-project'
   Project  '~/.vim/bundle/vim-leitner'
   Project  'scratch'
   Project  'nugg.ad/nuggad-api-service'
-  Project  'lispyscript'
   " Project  'nugg.ad/wiki'
   call project#config#callback("nuggad-compiler", project#utils#alternate(
-    \  [{'regex': '^src', 'string': 'spec'},
-    \   {'regex': '^spec', 'string': 'src'}]
+    \  [{'regex': '^src', 'string': 'spec', 'suffix': '+_spec'},
+    \   {'regex': '^spec', 'string': 'src', 'suffix': '-_spec'}]
     \  ))
 endif
 
@@ -88,9 +92,9 @@ if hostname() =~ 'local'
   File     'gollum/Bookmarks.md'                  , 'favorites'
   Callback 'gollum'                               , 'RemoveTextWidth'
   Project  'dotfiles'
-  File     'dotfiles/vimrc'                       , 'vimrc'
-  File     'dotfiles/gvimrc'                      , 'gvimrc'
-  File     'dotfiles/zshrc'                       , 'zshrc'
+  " File     'dotfiles/vimrc'                       , 'vimrc'
+  " File     'dotfiles/gvimrc'                      , 'gvimrc'
+  " File     'dotfiles/zshrc'                       , 'zshrc'
   Project  'terra/mystica'
   Callback 'mystica'                              , 'AddPublicToPath'
 endif
@@ -127,16 +131,23 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'majutsushi/tagbar'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'ervandew/supertab'
+
 " with screen or tmux
-"Bundle 'ervandew/screen'
+" Bundle 'ervandew/screen'
+
 " with iTerm and MacVim
 Bundle 'gcmt/tube.vim'
+
 Bundle 'mileszs/ack.vim'
 Bundle 'dahu/LearnVim'
 Bundle 'guns/paredit'
-"Bundle 'guyzmo/Rainbow-Parentheses-Improved-and2'
-"newer, I've to try
-"Bundle 'amdt/vim-niji'
+
+" disable, why?
+" Bundle 'guyzmo/Rainbow-Parentheses-Improved-and2'
+
+" newer, I've to try (for raibow parentheses)
+" Bundle 'amdt/vim-niji'
+
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-unimpaired'
@@ -171,24 +182,25 @@ Bundle 'kana/vim-textobj-indent'
 Bundle 'glts/vim-textobj-indblock'
 Bundle 'coderifous/textobj-word-column.vim'
 Bundle 'nelstrom/vim-visual-star-search'
+
 " FIXME: we should remap the <CR>
-"Bundle 'mmai/wikilink'
+" Bundle 'mmai/wikilink'
+
 Bundle 'tomtom/quickfixsigns_vim'
 Bundle 'kshenoy/vim-signature'
 Bundle 'tpope/vim-dispatch'
+
 " too slow
 " Bundle 'mhinz/vim-signify'
 " Bundle 'airblade/vim-gitgutter'
+
 Bundle 'tpope/vim-obsession'
 Bundle 'szw/vim-smartclose'
-if hostname() ==# 'air.local'
-  Bundle 'amiorin/vim-asign'
-endif
-"Bundle 'mhinz/vim-startify'
 Bundle 'nono/vim-handlebars'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'thoughtbot/vim-rspec'
-Bundle 'vim-alternate'
+Bundle 'marijnh/tern_for_vim'
+Bundle 'rking/ag.vim'
 
 filetype plugin indent on
 syntax on
@@ -229,7 +241,7 @@ let g:tube_terminal = 'iterm'
 " projects {{{1
 let g:ctrlp_mruf_relative = 1
 let g:ctrlp_show_hidden = 1
-nnoremap <silent> so :exec g:ctrlp_mruf_relative == 0 ? "let g:ctrlp_mruf_relative = 1 \| CtrlPMRUFiles" : "let g:ctrlp_mruf_relative = 0 \| CtrlPMRUFiles"<CR>
+" nnoremap <silent> so :exec g:ctrlp_mruf_relative == 0 ? "let g:ctrlp_mruf_relative = 1 \| CtrlPMRUFiles" : "let g:ctrlp_mruf_relative = 0 \| CtrlPMRUFiles"<CR>
 let g:ctrlp_working_path_mode = 0
 
 " signify {{{1
@@ -383,7 +395,7 @@ let g:EasyMotion_do_shade = 0
 let g:EasyMotion_leader_key = '<Space>'
 
 " ack {{{1
-nnoremap <space>a :Ack 
+nnoremap <space>a :Ag 
 
 " powerline {{{1
 if hostname() ==# 'air.local'

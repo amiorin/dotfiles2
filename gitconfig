@@ -1,6 +1,3 @@
-[user]
-	name = Alberto Miorin
-	email = github@ululi.it
 [credential]
 	helper = osxkeychain
 [push]

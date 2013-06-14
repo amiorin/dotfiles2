@@ -86,3 +86,6 @@ alias g="git"
 
 # gollum
 alias gsync="sh ./.rvmrc"
+
+# share history
+unsetopt share_history
