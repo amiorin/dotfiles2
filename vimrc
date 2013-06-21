@@ -57,6 +57,13 @@ elseif hostname() ==# 'TOSHIBA'
   endfunction
 
 elseif hostname() ==# 'retina.local'
+  Project  'nugg.ad/analyser2'
+  Project  'nugg.ad/nuggad-api-service'
+  Callback 'nuggad-api-service'                   , 'CallSpecOnSave'
+  Project  'nugg.ad/nuggad-db'
+  Project  'nugg.ad/rptn-admin'
+  Project  'grunt-watchify'
+  Project  'grunt-contrib-connect'
   Project  'browserify-seed'
   Project  'watchify'
   Project  'nugg.ad/nuggad-compiler'
@@ -71,16 +78,13 @@ elseif hostname() ==# 'retina.local'
   Project  'reloadlive'
   Project  '~/.vim/bundle/ctrlp.vim'
   Project  'nugg.ad/angular-seed'
-  Project  '/Users/amiorin/Dropbox/analyser2'
-  Project  'nugg.ad/analyser2'                    , 'a2'
   Project  'nugg.ad/karma'
   Project  '~/.vim/bundle/vim-asign'
   Project  '~/.vim/bundle/vim-project'
   Project  '~/.vim/bundle/vim-leitner'
   Project  'scratch'
-  Project  'nugg.ad/nuggad-api-service'
   " Project  'nugg.ad/wiki'
-  call project#config#callback("nuggad-compiler", project#utils#alternate(
+  call project#config#callback("browserify-seed", project#utils#alternate(
     \  [{'regex': '^src', 'string': 'spec', 'suffix': '+_spec'},
     \   {'regex': '^spec', 'string': 'src', 'suffix': '-_spec'}]
     \  ))
@@ -109,6 +113,32 @@ endfunction
 
 function! AddPublicToPath(...) abort
   setlocal path+=public
+endfunction
+
+" irb-config {{{1
+let g:call_spec_on_save_enable = 1
+function! CallSpecOnSave(...) abort
+  if get(g:, 'call_spec_on_save_enable', 1)
+    let bn = bufname('%')
+    if bn =~ '^spec/.*_spec\.rb$'
+      augroup CallSpecOnSave
+        au!
+        autocmd BufWritePost <buffer> :Tube ActiveRecord::Base.logger.level = Logger::Severity::UNKNOWN
+        autocmd BufWritePost <buffer> :Tube rspec %:#{line('.')} --format=documentation
+      augroup END
+    elseif bn =~ '^app/.*\.rb$'
+      let bn = substitute(bn, '^app', 'spec', '')
+      let bn = substitute(bn, '\.rb$', '_spec.rb', '')
+      augroup CallSpecOnSave
+        au!
+        autocmd BufWritePost <buffer> :Tube ActiveRecord::Base.logger.level = Logger::Severity::UNKNOWN
+        autocmd BufWritePost <buffer> :Tube reload!
+        execute 'autocmd BufWritePost <buffer> :Tube rspec '.bn.' --format=documentation'
+      augroup END
+    else
+      return
+    endif
+  endif
 endfunction
 
 set rtp+=~/.vim/bundle/vundle/
@@ -198,18 +228,23 @@ Bundle 'tpope/vim-obsession'
 Bundle 'szw/vim-smartclose'
 Bundle 'nono/vim-handlebars'
 Bundle 'kchmck/vim-coffee-script'
-Bundle 'thoughtbot/vim-rspec'
+" we use irb-config because it's faster than zeus
+" Bundle 'thoughtbot/vim-rspec'
 Bundle 'marijnh/tern_for_vim'
 Bundle 'rking/ag.vim'
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle 'garbas/vim-snipmate'
+Bundle 'spf13/snipmate-snippets'
 
 filetype plugin indent on
 syntax on
 
 " vim-rspec
-let g:rspec_command = "Dispatch zeus rspec {spec}"
-map <space>rt :call RunCurrentSpecFile()<CR>
-map <space>rs :call RunNearestSpec()<CR>
-map <space>rl :call RunLastSpec()<CR>
+" let g:rspec_command = "Dispatch zeus rspec {spec}"
+" map <space>rt :call RunCurrentSpecFile()<CR>
+" map <space>rs :call RunNearestSpec()<CR>
+" map <space>rl :call RunLastSpec()<CR>
 
 " rvm {{{1
 if hostname() =~ 'local'
@@ -414,7 +449,9 @@ let g:NERDTreeMapCWD = "<F2>"
 let g:NERDTreeMapHelp = "<F1>"
 let g:NERDTreeQuitOnOpen = 1
 let g:NERDTreeWinSize = 40
+let g:NERDTreeMinimalUI = 1
 
+let NERDTreeMinimalUI = 1
 " map of s {{{1
 map sc :NERDTree %%<CR>
 nnoremap <silent> sa :vertical resize 40<CR>
