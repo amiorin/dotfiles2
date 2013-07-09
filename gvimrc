@@ -16,6 +16,10 @@ if hostname() =~ 'local'
   noremap <silent> <D-t> :tabnew<CR>:Welcome<CR>
   inoremap <silent> <D-t> <Esc>:tabnew<CR>:Welcome<CR>
 
+  " split like iTerm2 {{{1
+  nnoremap <D-d> :vsp<cr>
+  nnoremap <D-D> :sp<cr>
+
   " tabs {{{1
   let s:windowmapnr = 0
   let s:wins='1234567890!@#$%^&*()'

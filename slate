@@ -1,0 +1,51 @@
+alias hyper ctrl;shift;alt;cmd
+
+bind i:cmd focus 'iTerm'
+bind e:cmd focus 'MacVim'
+bind b:cmd focus 'Google Chrome'
+
+# bind i:${hyper} focus 'iTerm'
+# bind e:${hyper} focus 'MacVim'
+# bind b:${hyper} focus 'Google Chrome'
+
+bind r:${hyper} relaunch
+
+alias full          move screenOriginX;screenOriginY                             screenSizeX;screenSizeY
+alias lefthalf      move screenOriginX;screenOriginY                             screenSizeX/2;screenSizeY
+alias righthalf     move screenOriginX+screenSizeX/2;screenOriginY               screenSizeX/2;screenSizeY
+alias tophalf       move screenOriginX;screenOriginY                             screenSizeX;screenSizeY/2
+alias bottomhalf    move screenOriginX;screenOriginY+screenSizeY/2               screenSizeX;screenSizeY/2
+
+alias thirdleft     move screenOriginX;screenOriginY                             screenSizeX/3;screenSizeY
+alias thirdmid      move screenOriginX+screenSizeX/3;screenOriginY               screenSizeX/3;screenSizeY
+alias thirdright    move screenOriginX+2*screenSizeX/3;screenOriginY             screenSizeX/3;screenSizeY
+
+alias bigleft       move screenOriginX;screenOriginY                             2*screenSizeX/3;screenSizeY
+alias bigmid        move screenOriginX+screenSizeX/6;screenOriginY               2*screenSizeX/3;screenSizeY
+alias bigright      move screenOriginX+screenSizeX/3;screenOriginY               2*screenSizeX/3;screenSizeY
+
+alias quadrantone   move screenOriginX+screenSizeX/2;screenOriginY               screenSizeX/2;screenSizeY/2
+alias quadranttwo   move screenOriginX;screenOriginY                             screenSizeX/2;screenSizeY/2
+alias quadrantthree move screenOriginX;screenOriginY+screenSizeY/2               screenSizeX/2;screenSizeY/2
+alias quadrantfour  move screenOriginX+screenSizeX/2;screenOriginY+screenSizeY/2 screenSizeX/2;screenSizeY/2
+
+bind q:${hyper} ${quadranttwo}
+bind w:${hyper} ${quadrantone}
+bind a:${hyper} ${quadrantthree}
+bind s:${hyper} ${quadrantfour}
+
+bind e:${hyper} ${bigright}
+bind d:${hyper} ${righthalf}
+bind z:${hyper} ${thirdleft}
+bind x:${hyper} ${thirdmid}
+bind c:${hyper} ${thirdright}
+
+bind 1:${hyper} throw 0 resize
+bind 2:${hyper} throw 1 resize
+bind 3:${hyper} throw 2 resize
+
+# focus
+# bind h:cmd focus left
+# bind l:cmd focus right
+# bind j:cmd focus down
+# bind k:cmd focus up

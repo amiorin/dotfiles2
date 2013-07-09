@@ -57,11 +57,16 @@ elseif hostname() ==# 'TOSHIBA'
   endfunction
 
 elseif hostname() ==# 'retina.local'
+  Project  'bacon.js'
+  Project  'bacon-seed'
+  Callback 'bacon-seed', 'SetupJavaScriptProject'
+  Project  'angular-book'
+  Project  'nugg.ad/rptn-admin'
+  Project  'nugg.ad/rptn'
   Project  'nugg.ad/analyser2'
   Project  'nugg.ad/nuggad-api-service'
   Callback 'nuggad-api-service'                   , 'CallSpecOnSave'
   Project  'nugg.ad/nuggad-db'
-  Project  'nugg.ad/rptn-admin'
   Project  'grunt-watchify'
   Project  'grunt-contrib-connect'
   Project  'browserify-seed'
@@ -105,6 +110,11 @@ endif
 
 function! RemoveTextWidth(...) abort
   setlocal textwidth=0
+endfunction
+
+function! SetupJavaScriptProject(...) abort
+  setlocal path+=src
+  setlocal suffixesadd+=.js
 endfunction
 
 function! AddSpecToPath(...) abort
@@ -191,7 +201,8 @@ Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-ragtag'
-Bundle 'amiorin/vim-rvm'
+Bundle 'tpope/vim-scriptease'
+Bundle 'tpope/vim-rvm'
 Bundle 'tpope/vim-rails'
 Bundle 'pangloss/vim-javascript'
 Bundle 'godlygeek/tabular'
@@ -236,6 +247,10 @@ Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle 'garbas/vim-snipmate'
 Bundle 'spf13/snipmate-snippets'
+
+" tmux setup {{{1
+" Bundle 'christoomey/vim-tmux-navigator'
+" Bundle 'sjl/vitality.vim'
 
 filetype plugin indent on
 syntax on
