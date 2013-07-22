@@ -89,3 +89,6 @@ alias gsync="sh ./.rvmrc"
 
 # share history
 unsetopt share_history
+
+# java_home
+JAVA_HOME=`/usr/libexec/java_home -v 1.6`

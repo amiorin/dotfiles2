@@ -57,6 +57,13 @@ elseif hostname() ==# 'TOSHIBA'
   endfunction
 
 elseif hostname() ==# 'retina.local'
+  Project  'nugg.ad/nuggad-flume'
+  Project  '~/Dropbox/recipe'
+  Project  'flume'
+  Project  'streams-example'
+  Project  '~/local/flume'
+  Project  '~/local/hadoop'
+  Project  '~/local/nuggad-pallet'
   Project  'bacon.js'
   Project  'bacon-seed'
   Callback 'bacon-seed', 'SetupJavaScriptProject'
@@ -98,6 +105,7 @@ endif
 if hostname() =~ 'local'
   Project  'gollum'
   File     'gollum/Todo.md'                       , 'todo'
+  Callback 'todo'                                 , 'SetupTodo'
   File     'gollum/Bookmarks.md'                  , 'favorites'
   Callback 'gollum'                               , 'RemoveTextWidth'
   Project  'dotfiles'
@@ -107,6 +115,11 @@ if hostname() =~ 'local'
   Project  'terra/mystica'
   Callback 'mystica'                              , 'AddPublicToPath'
 endif
+
+function SetupTodo(...) abort
+  setlocal fdm=marker
+  setlocal fdl=0
+endfunction
 
 function! RemoveTextWidth(...) abort
   setlocal textwidth=0
@@ -247,6 +260,7 @@ Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle 'garbas/vim-snipmate'
 Bundle 'spf13/snipmate-snippets'
+Bundle 'guns/vim-clojure-static'
 
 " tmux setup {{{1
 " Bundle 'christoomey/vim-tmux-navigator'
