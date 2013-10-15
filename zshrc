@@ -92,3 +92,18 @@ unsetopt share_history
 
 # java_home
 JAVA_HOME=`/usr/libexec/java_home -v 1.6`
+
+# for vagrant-digitalocean
+SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
+
+# amazon ami
+export VAGRANT_AMI=ami-f4927383
+
+# load .nvmrc
+function chpwd() {
+  emulate -L zsh
+  if [[ -f .nvmrc ]] then
+    nvm use `cat .nvmrc`
+  fi
+}
+[[ -f .nvmrc ]] && nvm use `cat .nvmrc`

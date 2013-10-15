@@ -57,6 +57,45 @@ elseif hostname() ==# 'TOSHIBA'
   endfunction
 
 elseif hostname() ==# 'retina.local'
+  Project  'nugg.ad/nuggad-puh-node'
+  Project  'nugg.ad/nuggad-logger'
+  Project  'nugg.ad/nuggad-processor'
+  Project  'node'
+  Project  'nugg.ad/vagrant-jscoverage'
+  Project  'nugg.ad/vagrant-zsh'
+  Project  '~/.vim/bundle/vim-project'
+  Project  'coverify-example'
+  Project  'nugg.ad/influx'
+  Project  'nugg.ad/rptn_erlogd'
+  Project  'nugg.ad/nuggad-rrd'
+  Project  'nugg.ad/flume-monitor'
+  Project  'nugg.ad/vagrant-node'
+  Project  'nugg.ad/dotsh'
+  Project  'nugg.ad/nuggad-deps'
+  Project  'nugg.ad/nuggad-amazon'
+  Project  'nugg.ad/nuggad-amazon-personal'
+  Project  'nugg.ad/nuggad-tasks'
+  Project  'nugg.ad/nuggad-packer'
+  Project  'nugg.ad/vagrant-daemontools'
+  Project  'agave-example'
+  Project  'nugg.ad/vagrant-sensu'
+  Project  'nugg.ad/vagrant-lein'
+  Project  'nugg.ad/nuggad-syncd'
+  Project  'nugg.ad/rptn'
+  Project  'nugg.ad/rptn-svm'
+  Project  'nugg.ad/nuggad-db'
+  Project  'nugg.ad/nuggad-rvm'
+  Project  'nugg.ad/graphviz'
+  Project  'node-book'
+  Project  'linenumber'
+  Project  'step-example'
+  Project  'nugg.ad/nuggad-haproxy'
+  Project  'vagrant-debian-wheezy-64'
+  Project  'dokku'
+  Project  'bouncy'
+  Project  'packer-example'
+  Project  'dependency-injections'
+  Project  'connect-example'
   Project  'nugg.ad/nuggad-flume'
   Project  '~/Dropbox/recipe'
   Project  'flume'
@@ -69,11 +108,9 @@ elseif hostname() ==# 'retina.local'
   Callback 'bacon-seed', 'SetupJavaScriptProject'
   Project  'angular-book'
   Project  'nugg.ad/rptn-admin'
-  Project  'nugg.ad/rptn'
   Project  'nugg.ad/analyser2'
   Project  'nugg.ad/nuggad-api-service'
   Callback 'nuggad-api-service'                   , 'CallSpecOnSave'
-  Project  'nugg.ad/nuggad-db'
   Project  'grunt-watchify'
   Project  'grunt-contrib-connect'
   Project  'browserify-seed'
@@ -92,8 +129,8 @@ elseif hostname() ==# 'retina.local'
   Project  'nugg.ad/angular-seed'
   Project  'nugg.ad/karma'
   Project  '~/.vim/bundle/vim-asign'
-  Project  '~/.vim/bundle/vim-project'
   Project  '~/.vim/bundle/vim-leitner'
+  Project  'king-of-tokyo'
   Project  'scratch'
   " Project  'nugg.ad/wiki'
   call project#config#callback("browserify-seed", project#utils#alternate(
@@ -254,7 +291,7 @@ Bundle 'nono/vim-handlebars'
 Bundle 'kchmck/vim-coffee-script'
 " we use irb-config because it's faster than zeus
 " Bundle 'thoughtbot/vim-rspec'
-Bundle 'marijnh/tern_for_vim'
+" Bundle 'marijnh/tern_for_vim'
 Bundle 'rking/ag.vim'
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
@@ -413,10 +450,24 @@ fu! CustomFoldText()
     return line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
 endf
 
-" fold on comment {{{1
+" fold on ruby comment {{{1
 autocmd FileType ruby,eruby,zsh
       \ setlocal foldmethod=expr |
       \ setlocal foldexpr=getline(v:lnum)=~'^\\s*#' |
+      \ setlocal foldtext=CustomFoldText() |
+      \ exe "normal zM"
+
+" fold on vim comment {{{1
+autocmd FileType vim
+      \ setlocal foldmethod=expr |
+      \ setlocal foldexpr=getline(v:lnum)=~'^\\s*\"' |
+      \ setlocal foldtext=CustomFoldText() |
+      \ exe "normal zM"
+
+" fold on groc comment {{{1
+autocmd FileType javascript
+      \ setlocal foldmethod=expr |
+      \ setlocal foldexpr=getline(v:lnum)=~'^\\s*\\*' |
       \ setlocal foldtext=CustomFoldText() |
       \ exe "normal zM"
 

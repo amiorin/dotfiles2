@@ -3,5 +3,4 @@ zeus.json
 .tern-port
 .DS_Store
 .powrc
-node_modules
-
+tags
