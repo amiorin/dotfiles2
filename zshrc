@@ -97,7 +97,7 @@ JAVA_HOME=`/usr/libexec/java_home -v 1.6`
 SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
 
 # amazon ami
-export VAGRANT_AMI=ami-f4927383
+export VAGRANT_AMI=ami-e8ab4b9f
 
 # load .nvmrc
 function chpwd() {
