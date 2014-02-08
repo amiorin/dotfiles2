@@ -57,6 +57,44 @@ elseif hostname() ==# 'TOSHIBA'
   endfunction
 
 elseif hostname() ==# 'retina.local'
+  Project  'nugg.ad/packages-ansible'
+  Project  'nugg.ad/spark'
+  Project  'nugg.ad/ansible-chronos'
+  Project  'nugg.ad/spark-tutorial'
+  Project  'ansible'
+  Project  'nugg.ad/apt-repository'
+  Project  'nugg.ad/bascu'
+  Project  'ansible-examples/hadoop'
+  Project  '~/.rvm/gems/ruby-1.9.3-p484/gems/mustache-0.99.5'
+  Project  'nugg.ad/nuggad-flume-conf'
+  Project  'nugg.ad/user-provisioning'
+  Project  'mentalcase'
+  Project  'nugg.ad/chronos'
+  Project  'daemontools'
+  Project  'go/src/github.com/amiorin/newmath'
+  Project  'go/src/github.com/hashicorp/serf'
+  Project  'nugg.ad/winnie-haproxy-configuration'
+  Project  'nugg.ad/integration-puh'
+  Project  'nugg.ad/nuggad-puh-node'
+  Project  'nugg.ad/nuggad-puh-node-conf'
+  Project  'nugg.ad/nuggad-proc4winnie'
+  Project  'nugg.ad/nuggad-proc4winnie-conf'
+  Project  'nugg.ad/nuggad-logger'
+  Project  'nugg.ad/nuggad-processor'
+  Project  'nugg.ad/nuggad-winnie-cluster'
+  Project  'nugg.ad/nuggad-dcluster'
+  Project  'poller'
+  Project  'nugg.ad/nuggad-flume'
+  Project  'nugg.ad/rptn'
+  Project  'nugg.ad/nuggad-db'
+  Project  'nugg.ad/rptn-svm'
+  Project  'nugg.ad/nuggad-syncd'
+  Project  'nugg.ad/cors4'
+  Project  'screen'
+  Project  'clojure-examples'
+  Project  'dzslides'
+  Project  'trident-tutorial'
+  Project  'cdk-examples'
   Project  'nugg.ad/nuggad-campaign-dashboard'
   Project  'nugg.ad/nuggad-api-service'
   Project  'nugg.ad/rptn-admin'
@@ -71,23 +109,18 @@ elseif hostname() ==# 'retina.local'
   Project  'nugg.ad/nuggad-local-storage'
   Project  'step-examples'
   Project  'nugg.ad/ratio'
-  Project  'nugg.ad/nuggad-puh-node'
-  Project  'nugg.ad/nuggad-logger'
-  Project  'nugg.ad/nuggad-processor'
-  Project  'nugg.ad/nuggad-log4winnie'
   Project  'node'
   Project  'nugg.ad/vagrant-jscoverage'
   Project  'nugg.ad/vagrant-zsh'
   Project  '~/.vim/bundle/vim-project'
   Project  'coverify-example'
   Project  'nugg.ad/influx'
-  Project  'nugg.ad/rptn_erlogd'
   Project  'nugg.ad/nuggad-rrd'
-  Project  'nugg.ad/flume-monitor'
   Project  'nugg.ad/vagrant-node'
   Project  'nugg.ad/dotsh'
   Project  'nugg.ad/nuggad-deps'
   Project  'nugg.ad/nuggad-amazon'
+  Project  'nugg.ad/nuggad-amazon-virtualbox'
   Project  'nugg.ad/nuggad-amazon-personal'
   Project  'nugg.ad/nuggad-tasks'
   Project  'nugg.ad/nuggad-packer'
@@ -95,10 +128,6 @@ elseif hostname() ==# 'retina.local'
   Project  'agave-example'
   Project  'nugg.ad/vagrant-sensu'
   Project  'nugg.ad/vagrant-lein'
-  Project  'nugg.ad/nuggad-syncd'
-  Project  'nugg.ad/rptn'
-  Project  'nugg.ad/rptn-svm'
-  Project  'nugg.ad/nuggad-db'
   Project  'nugg.ad/nuggad-rvm'
   Project  'nugg.ad/graphviz'
   Project  'node-book'
@@ -110,40 +139,21 @@ elseif hostname() ==# 'retina.local'
   Project  'packer-example'
   Project  'dependency-injections'
   Project  'connect-example'
-  Project  'nugg.ad/nuggad-flume'
-  Project  '~/Dropbox/recipe'
   Project  'flume'
-  Project  'streams-example'
-  Project  '~/local/flume'
-  Project  '~/local/hadoop'
-  Project  '~/local/nuggad-pallet'
   Project  'bacon.js'
   Project  'bacon-seed'
   Callback 'bacon-seed', 'SetupJavaScriptProject'
-  Project  'angular-book'
   Project  'nugg.ad/analyser2'
   Callback 'nuggad-api-service'                   , 'CallSpecOnSave'
   Project  'grunt-watchify'
   Project  'grunt-contrib-connect'
   Project  'browserify-seed'
   Project  'watchify'
-  Project  'nugg.ad/nuggad-compiler'
-  Project  'lispyscript'
-  Project  'angular.js'
   Project  'generator-browserify'
-  Project  'jquery2'
-  Project  'webapp'
-  Project  'angular-seed-with-browserify-and-mocha'
-  Project  'rendr-app-template'
-  Project  'carcounter'
   Project  'reloadlive'
   Project  '~/.vim/bundle/ctrlp.vim'
-  Project  'nugg.ad/angular-seed'
-  Project  'nugg.ad/karma'
   Project  '~/.vim/bundle/vim-asign'
   Project  '~/.vim/bundle/vim-leitner'
-  Project  'king-of-tokyo'
-  Project  'scratch'
   " Project  'nugg.ad/wiki'
   call project#config#callback("browserify-seed", project#utils#alternate(
     \  [{'regex': '^src', 'string': 'spec', 'suffix': '+_spec'},
@@ -242,10 +252,13 @@ Bundle 'gcmt/tube.vim'
 
 Bundle 'mileszs/ack.vim'
 Bundle 'dahu/LearnVim'
-Bundle 'guns/paredit'
+" Bundle 'guns/paredit'
+" it's a mercurial repository :-(
+Bundle 'https://bitbucket.org/kovisoft/paredit'
+" Bundle 'guns/vim-sexp'
 
 " disable, why?
-" Bundle 'guyzmo/Rainbow-Parentheses-Improved-and2'
+Bundle 'guyzmo/Rainbow-Parentheses-Improved-and2'
 
 " newer, I've to try (for raibow parentheses)
 " Bundle 'amdt/vim-niji'
@@ -273,9 +286,10 @@ Bundle 'jgdavey/tslime.vim'
 Bundle 'maxbrunsfeld/vim-yankstack'
 Bundle 'tyru/open-browser.vim'
 Bundle 'tacahiroy/ctrlp-funky'
-Bundle 'ctrlp-filetype'
-Bundle 'ctrlp-register'
-Bundle 'ctrlp-verboselet'
+" they don't work anymore
+" Bundle 'ctrlp-filetype'
+" Bundle 'ctrlp-register'
+" Bundle 'ctrlp-verboselet'
 Bundle 'milkypostman/vim-togglelist'
 Bundle 'bkad/CamelCaseMotion'
 Bundle 'kana/vim-textobj-user'
@@ -303,17 +317,28 @@ Bundle 'nono/vim-handlebars'
 Bundle 'kchmck/vim-coffee-script'
 " we use irb-config because it's faster than zeus
 " Bundle 'thoughtbot/vim-rspec'
-" Bundle 'marijnh/tern_for_vim'
+Bundle 'marijnh/tern_for_vim'
 Bundle 'rking/ag.vim'
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
+" temporary disable because of tern
 Bundle 'garbas/vim-snipmate'
 Bundle 'spf13/snipmate-snippets'
+
+Bundle 'jnwhiteh/vim-golang'
+Bundle 'Blackrush/vim-gocode'
+
 Bundle 'guns/vim-clojure-static'
+Bundle 'tpope/vim-fireplace'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'amiorin/vim-textile'
+Bundle 'klen/python-mode'
+Bundle 'Glench/Vim-Jinja2-Syntax'
 
 " tmux setup {{{1
 " Bundle 'christoomey/vim-tmux-navigator'
 " Bundle 'sjl/vitality.vim'
+Bundle 'mustache/vim-mustache-handlebars'
 
 filetype plugin indent on
 syntax on
@@ -324,6 +349,43 @@ syntax on
 " map <space>rs :call RunNearestSpec()<CR>
 " map <space>rl :call RunLastSpec()<CR>
 
+" disable go syntastic
+" let g:loaded_syntastic_go_go_checker=1
+" let g:loaded_syntastic_go_gofmt_checker=1
+" let g:loaded_syntastic_go_govet_checker=1
+
+" go ctags {{{1
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
+
+" snipmate {{{1
+imap <C-space> <Esc>a<Plug>snipMateNextOrTrigger
+
 " rvm {{{1
 if hostname() =~ 'local'
   augroup rvm
@@ -332,8 +394,8 @@ if hostname() =~ 'local'
   augroup END
 
   " vim-eval {{{1
-  let g:eval_viml_n = "<D-e>"
-  let g:eval_viml_v = "<D-e>"
+  let g:eval_viml_n = "<D-r>"
+  let g:eval_viml_v = "<D-r>"
 endif
 
 " no startup message {{{1
@@ -346,7 +408,7 @@ set shortmess+=I
 set encoding=utf-8
 
 " modeline {{{1
-set nomodeline
+set modeline
 
 " tube {{{1
 let g:tube_terminal = 'iterm'
@@ -364,6 +426,10 @@ let g:signify_sign_color_guifg_change   = '#bbbb00'
 let g:signify_sign_color_guifg_delete   = '#ff2222'
 
 " supertab {{{1
+
+" youcompleteme {{{1
+" let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<CR>']
+let g:ycm_filetype_specific_completion_to_disable = { 'ruby' : 1 }
 
 " markdown {{{1
 autocmd FileType markdown setlocal textwidth=78
@@ -483,6 +549,13 @@ autocmd FileType javascript
       \ setlocal foldtext=CustomFoldText() |
       \ exe "normal zM"
 
+" fold on go comment {{{1
+autocmd FileType go
+      \ setlocal foldmethod=expr |
+      \ setlocal foldexpr=getline(v:lnum)=~'^\\s*\\/\\/' |
+      \ setlocal foldtext=CustomFoldText() |
+      \ exe "normal zM"
+
 " lisp and others {{{1
 au BufNewFile,BufRead *.{wisp,scm,ls,shen} call PareditInitBuffer()
 au BufNewFile,BufRead *.{wisp,scm,ls,shen} nmap <silent> <buffer> <space>c v(((((((:ScreenSend<cr>
@@ -502,8 +575,8 @@ nnoremap <silent> <space>dt :diffthis<CR>
 nnoremap <silent> <space>do :diffoff<CR>
 
 " rainbow parentheses {{{1
-let g:rainbow_active = 1
-let g:rainbow_operators = 1
+let g:rainbow_active = 0
+let g:rainbow_operators = 0
 
 " fanfingtastic {{{1
 let g:fanfingtastic_ignorecase = 1
@@ -676,6 +749,10 @@ au BufRead,BufNewFile *.less setfiletype css
 
 " python {{{1
 autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4
+
+" go {{{1
+autocmd FileType go setlocal tabstop=2 softtabstop=0 shiftwidth=8 noexpandtab nolist
+autocmd FileType go autocmd BufWritePre <buffer> Fmt
 
 if hostname() ==# 'TOSHIBA'
   cd ~

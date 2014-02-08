@@ -61,7 +61,6 @@ function server() {
 
 # fasd
 eval "$(fasd --init auto)"
-alias v="f -e mvim2"
 alias o='a -e open'
 
 # ls
@@ -76,6 +75,8 @@ alias m="mvim"
 alias m2="mvim2"
 alias b="bundle"
 alias g="git"
+alias v="vagrant"
+alias a="ansible-playbook development.yml --tags focus"
 
 # man
 #export PAGER="col -b | sed 's/1m\(.*\)0m/\1/' | open -a /Applications/Google\ Chrome.app -f"
@@ -91,13 +92,15 @@ alias gsync="sh ./.rvmrc"
 unsetopt share_history
 
 # java_home
-JAVA_HOME=`/usr/libexec/java_home -v 1.6`
+JAVA_HOME=`/usr/libexec/java_home -v 1.7`
+
+export FLUME_RT=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar
 
 # for vagrant-digitalocean
 SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
 
 # amazon ami
-export VAGRANT_AMI=ami-e8ab4b9f
+export VAGRANT_AMI=ami-c8b345bf
 
 # load .nvmrc
 function chpwd() {

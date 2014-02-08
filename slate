@@ -3,7 +3,7 @@ alias hyper ctrl;alt;cmd
 bind i:cmd focus 'iTerm'
 bind e:cmd focus 'MacVim'
 bind b:cmd focus 'Google Chrome'
-bind m:cmd focus 'Firefox'
+bind m:cmd focus 'NetBeans'
 
 # bind i:${hyper} focus 'iTerm'
 # bind e:${hyper} focus 'MacVim'
