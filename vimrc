@@ -57,22 +57,12 @@ elseif hostname() ==# 'TOSHIBA'
   endfunction
 
 elseif hostname() ==# 'retina.local'
+  Project  'nugg.ad/nuggad-tgi'
   Project  'nugg.ad/packages-ansible'
+  Project  'nugg.ad/nuggad-flume'
+  Project  'spring-xd-examples'
+  Project  'nugg.ad/influx2'
   Project  'nugg.ad/spark'
-  Project  'nugg.ad/ansible-chronos'
-  Project  'nugg.ad/spark-tutorial'
-  Project  'ansible'
-  Project  'nugg.ad/apt-repository'
-  Project  'nugg.ad/bascu'
-  Project  'ansible-examples/hadoop'
-  Project  '~/.rvm/gems/ruby-1.9.3-p484/gems/mustache-0.99.5'
-  Project  'nugg.ad/nuggad-flume-conf'
-  Project  'nugg.ad/user-provisioning'
-  Project  'mentalcase'
-  Project  'nugg.ad/chronos'
-  Project  'daemontools'
-  Project  'go/src/github.com/amiorin/newmath'
-  Project  'go/src/github.com/hashicorp/serf'
   Project  'nugg.ad/winnie-haproxy-configuration'
   Project  'nugg.ad/integration-puh'
   Project  'nugg.ad/nuggad-puh-node'
@@ -82,9 +72,33 @@ elseif hostname() ==# 'retina.local'
   Project  'nugg.ad/nuggad-logger'
   Project  'nugg.ad/nuggad-processor'
   Project  'nugg.ad/nuggad-winnie-cluster'
+  Project  'ruby-build'
+  Project  'rvm'
+  Project  'nugg.ad/nuggad-docker'
+  Project  'nugg.ad/nuggad-pallet'
+  Project  'nugg.ad/forecast-loader'
+  Project  'nugg.ad/nuggad-cascalog'
+  Project  'spring-xd'
+  Project  'spring-integration'
+  Project  'shark'
+  Project  'kite-examples'
+  Project  'nugg.ad/protobuf-examples'
+  Project  'nugg.ad/scala-examples'
+  Project  'nugg.ad/spark-application'
+  Project  'nugg.ad/spark-tutorial'
+  Project  'ansible'
+  Project  'incubator-spark'
+  Project  'nugg.ad/apt-repository'
+  Project  'ansible-examples/hadoop'
+  Project  'nugg.ad/nuggad-flume-conf'
+  Project  'nugg.ad/user-provisioning'
+  Project  'mentalcase'
+  Project  'nugg.ad/chronos'
+  Project  'daemontools'
+  Project  'go/src/github.com/amiorin/newmath'
+  Project  'go/src/github.com/hashicorp/serf'
   Project  'nugg.ad/nuggad-dcluster'
   Project  'poller'
-  Project  'nugg.ad/nuggad-flume'
   Project  'nugg.ad/rptn'
   Project  'nugg.ad/nuggad-db'
   Project  'nugg.ad/rptn-svm'
@@ -130,17 +144,8 @@ elseif hostname() ==# 'retina.local'
   Project  'nugg.ad/vagrant-lein'
   Project  'nugg.ad/nuggad-rvm'
   Project  'nugg.ad/graphviz'
-  Project  'node-book'
-  Project  'linenumber'
-  Project  'nugg.ad/nuggad-haproxy'
   Project  'vagrant-debian-wheezy-64'
-  Project  'dokku'
-  Project  'bouncy'
-  Project  'packer-example'
-  Project  'dependency-injections'
-  Project  'connect-example'
   Project  'flume'
-  Project  'bacon.js'
   Project  'bacon-seed'
   Callback 'bacon-seed', 'SetupJavaScriptProject'
   Project  'nugg.ad/analyser2'
@@ -334,6 +339,7 @@ Bundle 'Valloric/YouCompleteMe'
 Bundle 'amiorin/vim-textile'
 Bundle 'klen/python-mode'
 Bundle 'Glench/Vim-Jinja2-Syntax'
+Bundle 'derekwyatt/vim-scala'
 
 " tmux setup {{{1
 " Bundle 'christoomey/vim-tmux-navigator'
@@ -430,6 +436,7 @@ let g:signify_sign_color_guifg_delete   = '#ff2222'
 " youcompleteme {{{1
 " let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<CR>']
 let g:ycm_filetype_specific_completion_to_disable = { 'ruby' : 1 }
+let g:EclimCompletionMethod = 'omnifunc'
 
 " markdown {{{1
 autocmd FileType markdown setlocal textwidth=78
@@ -747,12 +754,24 @@ highlight def link rubyRspec Function
 " less {{{1
 au BufRead,BufNewFile *.less setfiletype css
 
+" gradle {{{1
+au BufRead,BufNewFile *.gradle setfiletype groovy
+au BufRead,BufNewFile *.java nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
+
 " python {{{1
 autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4
+" let g:pymode_lint_checkers = ['pyflakes', 'mccabe']
+let g:pymode_lint_ignore = "E302,E501,C901"
 
 " go {{{1
 autocmd FileType go setlocal tabstop=2 softtabstop=0 shiftwidth=8 noexpandtab nolist
 autocmd FileType go autocmd BufWritePre <buffer> Fmt
+
+" ghjkl {{{1
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
 
 if hostname() ==# 'TOSHIBA'
   cd ~

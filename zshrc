@@ -28,6 +28,9 @@ source $ZSH/oh-my-zsh.sh
 # no corrections please
 unsetopt correct_all
 
+# no autocd
+unsetopt autocd
+
 # vi mode
 bindkey -v
 bindkey -M viins '^r' history-incremental-search-backward
@@ -76,7 +79,8 @@ alias m2="mvim2"
 alias b="bundle"
 alias g="git"
 alias v="vagrant"
-alias a="ansible-playbook development.yml --tags focus"
+alias a="ansible"
+alias ap="ansible-playbook"
 
 # man
 #export PAGER="col -b | sed 's/1m\(.*\)0m/\1/' | open -a /Applications/Google\ Chrome.app -f"
@@ -100,7 +104,7 @@ export FLUME_RT=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Clas
 SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
 
 # amazon ami
-export VAGRANT_AMI=ami-c8b345bf
+export VAGRANT_AMI=ami-79c4380e
 
 # load .nvmrc
 function chpwd() {
@@ -110,3 +114,5 @@ function chpwd() {
   fi
 }
 [[ -f .nvmrc ]] && nvm use `cat .nvmrc`
+
+export DOCKER_HOST=tcp://127.0.0.1:4243
