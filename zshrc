@@ -96,7 +96,7 @@ alias gsync="sh ./.rvmrc"
 unsetopt share_history
 
 # java_home
-JAVA_HOME=`/usr/libexec/java_home -v 1.7`
+export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
 
 export FLUME_RT=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar
 
@@ -104,7 +104,7 @@ export FLUME_RT=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Clas
 SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
 
 # amazon ami
-export VAGRANT_AMI=ami-79c4380e
+export VAGRANT_AMI=ami-69488e1e
 
 # load .nvmrc
 function chpwd() {
