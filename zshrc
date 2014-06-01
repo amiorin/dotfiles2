@@ -96,7 +96,7 @@ alias gsync="sh ./.rvmrc"
 unsetopt share_history
 
 # java_home
-JAVA_HOME=`/usr/libexec/java_home -v 1.7`
+export JAVA_HOME=`/usr/libexec/java_home`
 
 export FLUME_RT=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar
 
@@ -104,7 +104,7 @@ export FLUME_RT=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Clas
 SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
 
 # amazon ami
-export VAGRANT_AMI=ami-79c4380e
+export VAGRANT_AMI=ami-83a163f4
 
 # load .nvmrc
 function chpwd() {
@@ -116,3 +116,13 @@ function chpwd() {
 [[ -f .nvmrc ]] && nvm use `cat .nvmrc`
 
 export DOCKER_HOST=tcp://127.0.0.1:4243
+
+[ -s "/Users/amiorin/.nvm/nvm.sh" ] && . "/Users/amiorin/.nvm/nvm.sh" # This loads nvm
+
+export HADOOP_HOME=~/Code/hadoop-2.3.0-cdh5.0.0/share/hadoop/mapreduce1
+export SPARK_HOME=~/Code/spark-v0.9.1
+export PATH=$HADOOP_HOME/bin:$PATH
+# export HADOOP_PREFIX=/Users/amiorin/Code/hadoop-2.3.0-cdh5.0.0;
+# export HADOOP_COMMON_HOME=${HADOOP_PREFIX};
+# export HADOOP_HDFS_HOME=${HADOOP_PREFIX};
+# export HADOOP_CONF_DIR=${HADOOP_PREFIX}/conf;

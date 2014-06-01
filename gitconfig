@@ -27,3 +27,6 @@
   branch = magenta
 [core]
 	excludesfile = /Users/amiorin/.gitignore
+[user]
+	name = Alberto Miorin
+	email = alberto.miorin@nugg.ad

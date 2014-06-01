@@ -56,28 +56,47 @@ elseif hostname() ==# 'TOSHIBA'
     echom "foo"
   endfunction
 
-elseif hostname() ==# 'retina.local'
-  Project  'nugg.ad/nuggad-tgi'
+elseif hostname() ==# 'retina.local' || hostname() ==# 'tirena.local'
+  Project  'nugg.ad/spark-prediction-processor'
+  Project  'nugg.ad/google-integration'
+  Project  'nugg.ad/cdh-single-node'
+
+  Project  'roshi'
+  Project  'mesos'
+  " Project  'nugg.ad/winnie'
+  " Project  'nugg.ad/winnie-haproxy-configuration'
+  " winnie project
   Project  'nugg.ad/packages-ansible'
+  Project  'nugg.ad/winnie-processor'
+  Project  'nugg.ad/winnie-application'
+  Project  'nugg.ad/nuggad-logger'
+  Project  'nugg.ad/nuggad-processor'
+
+  " other projects
+  Project  'nugg.ad/nuggad-cascalog'
+  Project  'chronos'
+  Project  'apache-flume'
+  Project  'scala-examples'
+  Project  'nugg.ad/spark'
+
+  Project  'hadoop-2.3.0-cdh5.0.0'
+  Project  'nugg.ad/upload-process'
+  Project  'apache-spark'
+  Project  'gradle-dependencies'
+  Project  'mesos-hadoop'
+  Project  'hadoop-common'
+  Project  'nugg.ad/nuggad-tgi'
   Project  'nugg.ad/nuggad-flume'
   Project  'spring-xd-examples'
   Project  'nugg.ad/influx2'
-  Project  'nugg.ad/spark'
-  Project  'nugg.ad/winnie-haproxy-configuration'
   Project  'nugg.ad/integration-puh'
-  Project  'nugg.ad/nuggad-puh-node'
   Project  'nugg.ad/nuggad-puh-node-conf'
-  Project  'nugg.ad/nuggad-proc4winnie'
-  Project  'nugg.ad/nuggad-proc4winnie-conf'
-  Project  'nugg.ad/nuggad-logger'
-  Project  'nugg.ad/nuggad-processor'
-  Project  'nugg.ad/nuggad-winnie-cluster'
+  " Project  'nugg.ad/nuggad-winnie-cluster'
   Project  'ruby-build'
   Project  'rvm'
   Project  'nugg.ad/nuggad-docker'
   Project  'nugg.ad/nuggad-pallet'
   Project  'nugg.ad/forecast-loader'
-  Project  'nugg.ad/nuggad-cascalog'
   Project  'spring-xd'
   Project  'spring-integration'
   Project  'shark'
@@ -145,11 +164,7 @@ elseif hostname() ==# 'retina.local'
   Project  'nugg.ad/nuggad-rvm'
   Project  'nugg.ad/graphviz'
   Project  'vagrant-debian-wheezy-64'
-  Project  'flume'
-  Project  'bacon-seed'
-  Callback 'bacon-seed', 'SetupJavaScriptProject'
   Project  'nugg.ad/analyser2'
-  Callback 'nuggad-api-service'                   , 'CallSpecOnSave'
   Project  'grunt-watchify'
   Project  'grunt-contrib-connect'
   Project  'browserify-seed'
@@ -160,10 +175,10 @@ elseif hostname() ==# 'retina.local'
   Project  '~/.vim/bundle/vim-asign'
   Project  '~/.vim/bundle/vim-leitner'
   " Project  'nugg.ad/wiki'
-  call project#config#callback("browserify-seed", project#utils#alternate(
-    \  [{'regex': '^src', 'string': 'spec', 'suffix': '+_spec'},
-    \   {'regex': '^spec', 'string': 'src', 'suffix': '-_spec'}]
-    \  ))
+  " call project#config#callback("browserify-seed", project#utils#alternate(
+  "   \  [{'regex': '^src', 'string': 'spec', 'suffix': '+_spec'},
+  "   \   {'regex': '^spec', 'string': 'src', 'suffix': '-_spec'}]
+  "   \  ))
 endif
 
 if hostname() =~ 'local'
@@ -173,11 +188,11 @@ if hostname() =~ 'local'
   File     'gollum/Bookmarks.md'                  , 'favorites'
   Callback 'gollum'                               , 'RemoveTextWidth'
   Project  'dotfiles'
-  " File     'dotfiles/vimrc'                       , 'vimrc'
-  " File     'dotfiles/gvimrc'                      , 'gvimrc'
-  " File     'dotfiles/zshrc'                       , 'zshrc'
-  Project  'terra/mystica'
-  Callback 'mystica'                              , 'AddPublicToPath'
+  File     'dotfiles/vimrc'                       , 'vimrc'
+  File     'dotfiles/gvimrc'                      , 'gvimrc'
+  File     'dotfiles/zshrc'                       , 'zshrc'
+  " Project  'terra/mystica'
+  " Callback 'mystica'                              , 'AddPublicToPath'
 endif
 
 function SetupTodo(...) abort
@@ -228,10 +243,10 @@ function! CallSpecOnSave(...) abort
   endif
 endfunction
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#begin()
 
-Bundle 'gmarik/vundle'
+Bundle 'gmarik/Vundle.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'amiorin/ctrlp-z'
 Bundle 'amiorin/vim-colors-solarized'
@@ -345,6 +360,7 @@ Bundle 'derekwyatt/vim-scala'
 " Bundle 'christoomey/vim-tmux-navigator'
 " Bundle 'sjl/vitality.vim'
 Bundle 'mustache/vim-mustache-handlebars'
+call vundle#end()
 
 filetype plugin indent on
 syntax on
@@ -394,10 +410,10 @@ imap <C-space> <Esc>a<Plug>snipMateNextOrTrigger
 
 " rvm {{{1
 if hostname() =~ 'local'
-  augroup rvm
-    autocmd!
-    autocmd BufEnter * Rvm
-  augroup END
+"   augroup rvm
+"     autocmd!
+"     autocmd BufEnter * Rvm
+"   augroup END
 
   " vim-eval {{{1
   let g:eval_viml_n = "<D-r>"
@@ -609,7 +625,7 @@ if hostname() ==# 'air.local'
   set guifont=Menlo\ for\ Powerline:h12
 elseif hostname() ==# 'TOSHIBA'
   set guifont=Consolas\ for\ Powerline\ FixedD:h12
-elseif hostname() ==# 'retina.local'
+elseif hostname() ==# 'retina.local' || hostname() ==# 'tirena.local'
   set guifont=Menlo\ for\ Powerline:h14
 endif
 let g:Powerline_symbols = 'fancy'
@@ -693,6 +709,7 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set autoindent
+set smartindent
 set expandtab
 
 " autoread and autowrite {{{1
