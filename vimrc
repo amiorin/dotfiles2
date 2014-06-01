@@ -87,7 +87,6 @@ elseif hostname() ==# 'retina.local' || hostname() ==# 'tirena.local'
   Project  'hadoop-common'
   Project  'nugg.ad/nuggad-tgi'
   Project  'nugg.ad/nuggad-flume'
-  Project  'spring-xd-examples'
   Project  'nugg.ad/influx2'
   Project  'nugg.ad/integration-puh'
   Project  'nugg.ad/nuggad-puh-node-conf'
@@ -262,10 +261,10 @@ Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
 Bundle 'majutsushi/tagbar'
 Bundle 'Lokaltog/vim-powerline'
-Bundle 'ervandew/supertab'
+" Bundle 'ervandew/supertab'
 
 " with screen or tmux
-" Bundle 'ervandew/screen'
+" Bundle 'ervandew/screenervandew/screen'
 
 " with iTerm and MacVim
 Bundle 'gcmt/tube.vim'
