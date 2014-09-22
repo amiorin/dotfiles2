@@ -57,9 +57,53 @@ elseif hostname() ==# 'TOSHIBA'
   endfunction
 
 elseif hostname() ==# 'retina.local' || hostname() ==# 'tirena.local'
-  Project  'nugg.ad/spark-prediction-processor'
-  Project  'nugg.ad/google-integration'
+  Project  'node-webhdfs'
+  Project  'influxdb-examples'
+  Project  'iperf'
+  Project  'foo'
+  Project  'nugg.ad/nuggad-lang'
+  Project  'nugg.ad/nuggad-api-service'
+  Project  'soundcloud/index'
+  Project  'soundcloud/search'
+  Project  'nugg.ad/spark-data-science'
+  Project  '/Users/amiorin/Downloads/spark-1.0.2-bin-cdh4'
+  Project  'nugg.ad/impala-rest'
+  Project  'nugg.ad/spark-forecast'
+  Project  'nugg.ad/spark-1.0.2-bin-hadoop2'
+  Project  'parquet-mr'
+  Project  'nugg.ad/streamdrill'
+  Project  'haproxy-1.5.3'
+  Project  'plainc'
+  Project  'wrk'
+  Project  'redis'
+  Project  'accesslog'
+  Project  'okhttp'
+  Project  'nugg.ad/nuggad-flume'
+  Project  'nugg.ad/userdb'
+  Project  'nugg.ad/commons-configuration-example'
+  Project  'commons-configuration'
+  Project  'log4j'
+  Project  'metrics-librato'
   Project  'nugg.ad/cdh-single-node'
+  Project  'guava-chat'
+  Project  'HugeCollections'
+  Project  'nugg.ad/slack-ansible'
+  Project  'nugg.ad/provisioning'
+  Project  'nugg.ad/chronos-sync'
+  Project  'nugg.ad/spark'
+  Project  'nugg.ad/upload-process'
+  Project  'nugg.ad/spark-hello-world'
+  Project  'nugg.ad/spark-prediction-processor'
+  Project  'nugg.ad/bob-the-builder'
+  Project  'apache-spark'
+  Project  'glog-0.3.3'
+  Project  'nugg.ad/ansible-playbooks'
+  Project  'nugg.ad/terasort'
+  Project  'nugg.ad/hio-bench'
+  Project  'nugg.ad/testdfsio'
+  Project  'nugg.ad/chronos-jobs'
+  Project  'nugg.ad/google-integration'
+  Project  'nugg.ad/flume-configuration'
 
   Project  'roshi'
   Project  'mesos'
@@ -77,16 +121,12 @@ elseif hostname() ==# 'retina.local' || hostname() ==# 'tirena.local'
   Project  'chronos'
   Project  'apache-flume'
   Project  'scala-examples'
-  Project  'nugg.ad/spark'
 
-  Project  'hadoop-2.3.0-cdh5.0.0'
-  Project  'nugg.ad/upload-process'
-  Project  'apache-spark'
+  Project  'hadoop-2.3.0-cdh5.0.1'
   Project  'gradle-dependencies'
   Project  'mesos-hadoop'
   Project  'hadoop-common'
   Project  'nugg.ad/nuggad-tgi'
-  Project  'nugg.ad/nuggad-flume'
   Project  'nugg.ad/influx2'
   Project  'nugg.ad/integration-puh'
   Project  'nugg.ad/nuggad-puh-node-conf'
@@ -128,7 +168,6 @@ elseif hostname() ==# 'retina.local' || hostname() ==# 'tirena.local'
   Project  'trident-tutorial'
   Project  'cdk-examples'
   Project  'nugg.ad/nuggad-campaign-dashboard'
-  Project  'nugg.ad/nuggad-api-service'
   Project  'nugg.ad/rptn-admin'
   Project  'regeneratorify'
   Project  'regenerator'
@@ -245,6 +284,7 @@ endfunction
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
 
+" package manager
 Bundle 'gmarik/Vundle.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'amiorin/ctrlp-z'
@@ -261,6 +301,7 @@ Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
 Bundle 'majutsushi/tagbar'
 Bundle 'Lokaltog/vim-powerline'
+" disable beacause of youcompleteme
 " Bundle 'ervandew/supertab'
 
 " with screen or tmux
@@ -354,6 +395,7 @@ Bundle 'amiorin/vim-textile'
 Bundle 'klen/python-mode'
 Bundle 'Glench/Vim-Jinja2-Syntax'
 Bundle 'derekwyatt/vim-scala'
+" Bundle 'joonty/vdebug'
 
 " tmux setup {{{1
 " Bundle 'christoomey/vim-tmux-navigator'
@@ -450,8 +492,8 @@ let g:signify_sign_color_guifg_delete   = '#ff2222'
 
 " youcompleteme {{{1
 " let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<CR>']
-let g:ycm_filetype_specific_completion_to_disable = { 'ruby' : 1 }
-let g:EclimCompletionMethod = 'omnifunc'
+"let g:ycm_filetype_specific_completion_to_disable = { 'ruby' : 0 }
+"let g:EclimCompletionMethod = 'omnifunc'
 
 " markdown {{{1
 autocmd FileType markdown setlocal textwidth=78
@@ -520,7 +562,7 @@ noremap <space>Y "*y$
 " markdown {{{1
 augroup markdown
   autocmd!
-  autocmd FileType markdown iabbr \|\|\| \|\|\|<cr>\-\-\- \| \-\-\-
+  autocmd FileType markdown iabbr \|\|\| \|\|\|<cr>--- \| ---
 augroup END
 
 " ruby {{{1
@@ -566,6 +608,13 @@ autocmd FileType vim
 
 " fold on groc comment {{{1
 autocmd FileType javascript
+      \ setlocal foldmethod=expr |
+      \ setlocal foldexpr=getline(v:lnum)=~'^\\s*\\*' |
+      \ setlocal foldtext=CustomFoldText() |
+      \ exe "normal zM"
+
+" fold on groc comment {{{1
+autocmd FileType java
       \ setlocal foldmethod=expr |
       \ setlocal foldexpr=getline(v:lnum)=~'^\\s*\\*' |
       \ setlocal foldtext=CustomFoldText() |
@@ -811,3 +860,8 @@ endif
 "         \ }
 "         \ }
 " endif
+
+" open-browse {{{1
+let g:netrw_nogx = 1 " disable netrw's gx mapping.
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)

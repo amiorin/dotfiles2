@@ -30,3 +30,5 @@
 [user]
 	name = Alberto Miorin
 	email = alberto.miorin@nugg.ad
+[receive]
+  denyNonFastForwards = false

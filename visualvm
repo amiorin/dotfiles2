@@ -1,0 +1,5 @@
+#!/bin/bash
+
+JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+
+nohup $JAVA_HOME/bin/jvisualvm 2> /dev/null &

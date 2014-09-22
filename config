@@ -1,0 +1,314 @@
+Host bibring
+  Hostname bibring-dom0.um.nugg.ad
+  User amiorin
+  IdentityFile ~/.ssh/id_rsa
+  Port 22
+
+Host hdd021
+  Hostname hd-datanode021.um1.nugg.ad
+  User amiorin
+  IdentityFile ~/.ssh/id_rsa
+  Port 22
+
+Host foo
+  Hostname ip-10-23-42-118.am.nugg.ad
+  User ubuntu
+  IdentityFile ~/.ssh/vagrant.pem
+  IdentitiesOnly yes
+  ForwardX11 yes
+  Port 22
+
+Host qapuh
+  Hostname qa-puh.ffm.nugg.ad
+  User rptn_deploy
+  Port 22
+
+Host qaapi
+  Hostname api.ffm.nugg.ad
+  User rptn_deploy
+  Port 22
+
+Host userdb001
+  Hostname userdb001.um.nugg.ad
+  User flumefoo
+  Port 22
+
+Host streamdrill
+  Hostname streamdrill001.um.nugg.ad
+  User streamdrill
+  Port 22
+  ForwardX11 yes
+
+Host hdc001
+  Hostname hdc001.um.nugg.ad
+  User rptn_deploy
+  Port 22
+  IdentityFile ~/.ssh/rptn_deploy
+  IdentitiesOnly yes
+  ForwardX11 yes
+
+Host hdc002
+  Hostname hdc002.um.nugg.ad
+  User rptn_deploy
+  Port 22
+  IdentityFile ~/.ssh/rptn_deploy
+  IdentitiesOnly yes
+
+Host hdc003
+  Hostname hdc003.um.nugg.ad
+  User rptn_deploy
+  Port 22
+  IdentityFile ~/.ssh/rptn_deploy
+  IdentitiesOnly yes
+
+Host hdc004
+  Hostname hdc004.um.nugg.ad
+  User rptn_deploy
+  Port 22
+  IdentityFile ~/.ssh/rptn_deploy
+  IdentitiesOnly yes
+
+Host hdc005
+  Hostname hdc005.um.nugg.ad
+  User rptn_deploy
+  Port 22
+  IdentityFile ~/.ssh/rptn_deploy
+  IdentitiesOnly yes
+
+Host hdc006
+  Hostname hdc006.um.nugg.ad
+  User rptn_deploy
+  Port 22
+  IdentityFile ~/.ssh/rptn_deploy
+  IdentitiesOnly yes
+
+Host hdc007
+  Hostname hdc007.um.nugg.ad
+  User rptn_deploy
+  Port 22
+  IdentityFile ~/.ssh/rptn_deploy
+  IdentitiesOnly yes
+
+Host hdc008
+  Hostname hdc008.um.nugg.ad
+  User rptn_deploy
+  Port 22
+  IdentityFile ~/.ssh/rptn_deploy
+  IdentitiesOnly yes
+
+Host hdc009
+  Hostname hdc009.um.nugg.ad
+  User rptn_deploy
+  Port 22
+  IdentityFile ~/.ssh/rptn_deploy
+  IdentitiesOnly yes
+
+Host hdc010
+  Hostname hdc010.um.nugg.ad
+  User rptn_deploy
+  Port 22
+  IdentityFile ~/.ssh/rptn_deploy
+  IdentitiesOnly yes
+
+Host qahdc001
+  Hostname qa-hdc001.ffm.nugg.ad
+  User rptn_deploy
+  Port 22
+  IdentityFile ~/.ssh/rptn_deploy
+  IdentitiesOnly yes
+
+Host qahdc002
+  Hostname qa-hdc002.ffm.nugg.ad
+  User rptn_deploy
+  Port 22
+  IdentityFile ~/.ssh/rptn_deploy
+  IdentitiesOnly yes
+
+host qahdc003
+  hostname qa-hdc003.ffm.nugg.ad
+  user rptn_deploy
+  port 22
+  identityfile ~/.ssh/rptn_deploy
+  identitiesonly yes
+
+Host qahdc004
+  Hostname qa-hdc004.ffm.nugg.ad
+  User rptn_deploy
+  Port 22
+  IdentityFile ~/.ssh/rptn_deploy
+  IdentitiesOnly yes
+
+Host qahdc005
+  Hostname qa-hdc005.ffm.nugg.ad
+  User rptn_deploy
+  Port 22
+  IdentityFile ~/.ssh/rptn_deploy
+  IdentitiesOnly yes
+
+Host qahdc006
+  Hostname qa-hdc006.ffm.nugg.ad
+  User rptn_deploy
+  Port 22
+  IdentityFile ~/.ssh/rptn_deploy
+  IdentitiesOnly yes
+
+Host vdb001
+  Hostname vdb001.um.nugg.ad
+  User rptn_deploy
+  Port 22
+  IdentityFile ~/.ssh/rptn_deploy
+  IdentitiesOnly yes
+
+Host qahddatanode001
+  Hostname qa-hd-datanode001.ffm.nugg.ad
+  User rptn_deploy
+  Port 22
+  IdentityFile ~/.ssh/rptn_deploy
+  IdentitiesOnly yes
+
+Host qahdnamenode001
+  Hostname qa-hd-namenode001.ffm.nugg.ad
+  User rptn_deploy
+  Port 22
+  IdentityFile ~/.ssh/rptn_deploy
+  IdentitiesOnly yes
+
+Host hdnamenode001
+  Hostname hd-namenode001.um1.nugg.ad
+  User flumefoo
+  Port 22
+
+Host hdnamenode002
+  Hostname hd-namenode002.um1.nugg.ad
+  User flumefoo
+  Port 22
+
+Host qaappnode001
+  Hostname qa-appnode001.ffm.nugg.ad
+  User rptn_deploy
+  Port 22
+  IdentityFile ~/.ssh/rptn_deploy
+  IdentitiesOnly yes
+
+Host qaappnode002
+  Hostname qa-appnode002.ffm.nugg.ad
+  User rptn_deploy
+  Port 22
+  IdentityFile ~/.ssh/rptn_deploy
+  IdentitiesOnly yes
+
+Host cloudera
+  Hostname localhost
+  User cloudera
+  Port 2222
+  IdentityFile ~/.ssh/vagrant
+  IdentitiesOnly yes
+
+Host repository_production
+  Hostname apt-proxy.um1.nugg.ad
+  User jenkins
+  IdentityFile ~/.ssh/apt_id_rsa
+  IdentitiesOnly yes
+
+Host repository_stage
+  Hostname qa-aptrepo.ffm.nugg.ad
+  User jenkins
+  IdentityFile ~/.ssh/apt_id_rsa
+  IdentitiesOnly yes
+
+Host devel
+  Hostname devel.office.nugg.ad
+  User amiorin
+  IdentityFile ~/.ssh/id_rsa
+  IdentitiesOnly yes
+
+Host hdc011
+  Hostname hdc011.um.nugg.ad
+  User amiorin
+  IdentityFile ~/.ssh/id_rsa
+  IdentitiesOnly yes
+
+Host gitlab.office.nugg.ad
+  Hostname gitlab.office.nugg.ad
+  User git
+  IdentityFile ~/.ssh/id_rsa
+  IdentitiesOnly yes
+
+Host rich
+  Hostname ip-10-23-42-21.am.nugg.ad
+  User vagrant
+  IdentityFile ~/.ssh/vagrant
+  IdentitiesOnly yes
+
+# amazon vpc 1
+Host s01
+  Hostname ip-192-168-1-11.eu-west-1.compute.internal
+  User vagrant
+  IdentityFile ~/.ssh/vagrant
+  IdentitiesOnly yes
+
+Host s02
+  Hostname ip-192-168-1-12.eu-west-1.compute.internal
+  User vagrant
+  IdentityFile ~/.ssh/vagrant
+  IdentitiesOnly yes
+
+Host s03
+  Hostname ip-192-168-1-13.eu-west-1.compute.internal
+  User vagrant
+  IdentityFile ~/.ssh/vagrant
+  IdentitiesOnly yes
+
+Host s04
+  Hostname ip-192-168-1-14.eu-west-1.compute.internal
+  User vagrant
+  IdentityFile ~/.ssh/vagrant
+  IdentitiesOnly yes
+
+Host s05
+  Hostname ip-192-168-1-15.eu-west-1.compute.internal
+  User vagrant
+  IdentityFile ~/.ssh/vagrant
+  IdentitiesOnly yes
+
+Host s06
+  Hostname ip-192-168-1-16.eu-west-1.compute.internal
+  User vagrant
+  IdentityFile ~/.ssh/vagrant
+  IdentitiesOnly yes
+
+Host mone
+  Hostname 23.23.22.191
+  User ubuntu
+  IdentityFile ~/.ssh/mesosphere
+  IdentitiesOnly yes
+
+Host mtwo
+  Hostname 54.196.170.9
+  User ubuntu
+  IdentityFile ~/.ssh/mesosphere
+  IdentitiesOnly yes
+
+Host mthree
+  Hostname 54.221.33.4
+  User ubuntu
+  IdentityFile ~/.ssh/mesosphere
+  IdentitiesOnly yes
+
+Host mfour
+  Hostname 54.242.36.69
+  User ubuntu
+  IdentityFile ~/.ssh/mesosphere
+  IdentitiesOnly yes
+
+Host mfive
+  Hostname 54.197.17.158
+  User ubuntu
+  IdentityFile ~/.ssh/mesosphere
+  IdentitiesOnly yes
+
+Host msix
+  Hostname 54.196.80.53
+  User ubuntu
+  IdentityFile ~/.ssh/mesosphere
+  IdentitiesOnly yes
