@@ -57,6 +57,12 @@ elseif hostname() ==# 'TOSHIBA'
   endfunction
 
 elseif hostname() ==# 'retina.local' || hostname() ==# 'tirena.local'
+  Project  'jekyll-elasticsearch'
+  Project  'nugg.ad/nuggad-tgi-integration'
+  Project  'nugg.ad/aerospike-benchmark'
+  Project  'aerospike-client-nodejs'
+  Project  'act'
+  Project  'myriad'
   Project  'node-webhdfs'
   Project  'influxdb-examples'
   Project  'iperf'

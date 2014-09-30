@@ -18,6 +18,16 @@ Host foo
   ForwardX11 yes
   Port 22
 
+Host shekhtelia
+  Hostname shekhtelia-dom0.um.nugg.ad
+  User amiorin
+  Port 22
+
+Host qahdinflux001
+  Hostname qa-hd-influx001.ffm.nugg.ad
+  User rptn_deploy
+  Port 22
+
 Host qapuh
   Hostname qa-puh.ffm.nugg.ad
   User rptn_deploy
@@ -31,6 +41,11 @@ Host qaapi
 Host userdb001
   Hostname userdb001.um.nugg.ad
   User flumefoo
+  Port 22
+
+Host userdb007
+  Hostname userdb007.um.nugg.ad
+  User amiorin
   Port 22
 
 Host streamdrill
